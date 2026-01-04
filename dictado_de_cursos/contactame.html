@@ -279,7 +279,61 @@
         }
     </script>
 
-    <script src="js/app.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const cursoSeleccionado = params.get('curso');
+
+        if (cursoSeleccionado) {
+            const nombreLimpio = decodeURIComponent(cursoSeleccionado);
+            document.getElementById('input-curso').value = nombreLimpio;
+            document.getElementById('mensaje-curso').innerHTML = 
+                `Estás a un paso de inscribirte en:<br><strong style="font-size:1.1rem; color:#3776AB;">${nombreLimpio}</strong>`;
+        }
+    </script>
+
+    <script>
+        // --- IMPORTANTE: PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT ---
+        // Debe terminar en /exec
+        const scriptURL = 'AQUI_PEGA_TU_URL_LARGA_DE_GOOGLE_APPS_SCRIPT'; 
+
+        const form = document.forms['submit-to-google-sheet'];
+        const btnEnviar = document.querySelector('.submit-btn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault(); // Evita que la página se recargue
+            
+            // 1. Feedback visual (Botón cambia a "Enviando...")
+            const textoOriginal = btnEnviar.innerHTML;
+            btnEnviar.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
+            btnEnviar.disabled = true;
+
+            // 2. Envío de datos
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                // 3. Éxito
+                alert("¡Gracias! Tus datos han sido enviados correctamente.");
+                
+                // Limpiar formulario y restaurar botón
+                form.reset();
+                btnEnviar.innerHTML = textoOriginal;
+                btnEnviar.disabled = false;
+                
+                // Opcional: Redirigir al inicio después de unos segundos
+                // window.location.href = "index.html"; 
+            })
+            .catch(error => {
+                // 4. Error
+                console.error('Error!', error.message);
+                alert("Hubo un error al enviar. Por favor contáctanos por WhatsApp.");
+                btnEnviar.innerHTML = textoOriginal;
+                btnEnviar.disabled = false;
+            });
+        });
+    </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
