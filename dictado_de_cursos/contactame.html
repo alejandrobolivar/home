@@ -201,9 +201,9 @@
     <header>
         <nav>
             <div class="logo" style="font-weight: 700; color: var(--primary-color); font-size: 1.2rem;">PythonAcademy</div>
-            <a href="../index.html" class="cta-button" style="text-decoration:none; font-size:0.9rem; color:var(--text-gray);">
-    <i class="fas fa-home"></i> Inicio
-</a>
+            <a href="index.html" class="cta-button" style="text-decoration:none; font-size:0.9rem; color:var(--text-gray);">
+                <i class="fas fa-home"></i> Inicio
+            </a>
         </nav>
     </header>
 
@@ -266,6 +266,7 @@
     </footer>
 
     <script>
+        // 1. Lógica para detectar el curso en la URL
         const params = new URLSearchParams(window.location.search);
         const cursoSeleccionado = params.get('curso');
 
@@ -277,23 +278,9 @@
             document.getElementById('mensaje-curso').innerHTML = 
                 `Estás a un paso de inscribirte en:<br><strong style="font-size:1.1rem; color:#3776AB;">${nombreLimpio}</strong>`;
         }
-    </script>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const cursoSeleccionado = params.get('curso');
-
-        if (cursoSeleccionado) {
-            const nombreLimpio = decodeURIComponent(cursoSeleccionado);
-            document.getElementById('input-curso').value = nombreLimpio;
-            document.getElementById('mensaje-curso').innerHTML = 
-                `Estás a un paso de inscribirte en:<br><strong style="font-size:1.1rem; color:#3776AB;">${nombreLimpio}</strong>`;
-        }
-    </script>
-
-    <script>
-        // --- IMPORTANTE: PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT ---
-        // Debe terminar en /exec
+        // 2. Lógica para enviar a Google Sheets
+        // Tu URL de Google Apps Script
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec'; 
 
         const form = document.forms['submit-to-google-sheet'];
@@ -302,15 +289,14 @@
         form.addEventListener('submit', e => {
             e.preventDefault(); // Evita que la página se recargue
             
-            // 1. Feedback visual (Botón cambia a "Enviando...")
+            // Feedback visual (Botón cambia a "Enviando...")
             const textoOriginal = btnEnviar.innerHTML;
             btnEnviar.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
             btnEnviar.disabled = true;
 
-            // 2. Envío de datos
+            // Envío de datos
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                // 3. Éxito
                 alert("¡Gracias! Tus datos han sido enviados correctamente.");
                 
                 // Limpiar formulario y restaurar botón
@@ -318,11 +304,10 @@
                 btnEnviar.innerHTML = textoOriginal;
                 btnEnviar.disabled = false;
                 
-                // Opcional: Redirigir al inicio después de unos segundos
+                // Opcional: Redirigir al inicio
                 // window.location.href = "index.html"; 
             })
             .catch(error => {
-                // 4. Error
                 console.error('Error!', error.message);
                 alert("Hubo un error al enviar. Por favor contáctanos por WhatsApp.");
                 btnEnviar.innerHTML = textoOriginal;
@@ -330,10 +315,6 @@
             });
         });
     </script>
-
-</body>
-</html>
-
 
 </body>
 </html>
