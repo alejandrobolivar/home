@@ -4,106 +4,278 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscripción y Contacto | Academia Bolívar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link rel="stylesheet" href="css/estilos.css">
     
     <style>
-        /* Ajuste para centrar el formulario en pantalla completa */
+        :root {
+            --primary-color: #3776AB;
+            --primary-dark: #2a5b88;
+            --accent-color: #FFD43B;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --text-gray: #666;
+        }
+
+        /* Estructura Principal */
         body {
-            background-color: var(--bg-light);
+            background: var(--bg-gradient);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
         }
+
+        /* Header Simplificado */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+        }
+
         .main-contact-container {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1rem;
+            padding: 3rem 1rem;
         }
+
+        /* Tarjeta del Formulario */
         .contact-card-wrapper {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 600px;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 550px;
             width: 100%;
+            border-top: 6px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Enlace de Volver */
         .back-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--primary-color); }
+
+        /* Títulos y Textos */
+        h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* Caja de alerta del curso seleccionado */
+        .course-alert {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        /* Estilos de los Inputs con Iconos */
+        .form-group {
             margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            transition: color 0.3s;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px 12px 45px; /* Espacio para el icono */
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(55, 118, 171, 0.1);
+        }
+
+        .form-group input:focus + i, 
+        .form-group input:valid + i {
             color: var(--primary-color);
+        }
+
+        /* Botón de Enviar */
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(55, 118, 171, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(55, 118, 171, 0.4);
+        }
+
+        /* Sección de WhatsApp */
+        .whatsapp-section {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #ddd;
+            padding-top: 1.5rem;
+        }
+
+        .whatsapp-btn-large {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.3s;
         }
-        .back-link:hover { text-decoration: underline; }
+        .whatsapp-btn-large:hover { background-color: #1ebe57; }
+
+        /* Footer Simple */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .contact-card-wrapper { padding: 1.5rem; }
+            h2 { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <nav>
-            <div class="logo">Academia Bolívar</div>
-            <a href="index.html" class="cta-button" style="background:transparent; color:var(--primary-color); border: 2px solid var(--primary-color);">Volver al Inicio</a>
+            <div class="logo" style="font-weight: 700; color: var(--primary-color); font-size: 1.2rem;">Academia Bolívar</div>
+            <a href="index.html" class="cta-button" style="text-decoration:none; font-size:0.9rem; color:var(--text-gray);">
+                <i class="fas fa-home"></i> Inicio
+            </a>
         </nav>
     </header>
 
     <main class="main-contact-container">
         <div class="contact-card-wrapper">
-            <a href="javascript:history.back()" class="back-link">← Volver al curso</a>
+            <a href="javascript:history.back()" class="back-link">
+                <i class="fas fa-arrow-left"></i> Volver al curso anterior
+            </a>
             
-            <h2 style="color: var(--primary-color); margin-bottom: 0.5rem;">Formulario de Inscripción</h2>
-            <p id="mensaje-curso" style="color: #666; margin-bottom: 2rem;">Completa tus datos para contactarte.</p>
+            <h2>¡Casi listo! 🚀</h2>
+            
+            <div id="mensaje-curso" class="course-alert">
+                Completa tus datos para contactarte.
+            </div>
 
-            <form class="contact-form" name="submit-to-google-sheet" style="box-shadow: none; padding: 0;">
+            <form class="contact-form" name="submit-to-google-sheet">
                 
                 <input type="hidden" id="input-curso" name="curso" value="Contacto General">
 
                 <div class="form-group">
                     <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <div class="input-wrapper">
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Alejandro Bolívar" required>
+                        <i class="fas fa-user"></i>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" required>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="telefono">Teléfono / WhatsApp</label>
-                    <input type="tel" id="telefono" name="telefono" required>
+                    <div class="input-wrapper">
+                        <input type="tel" id="telefono" name="telefono" placeholder="+58 412..." required>
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
                 </div>
 
-                <button type="submit" class="cta-button submit-btn">Enviar Solicitud</button>
+                <button type="submit" class="submit-btn">
+                    Enviar Solicitud <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+                </button>
             </form>
             
-            <div style="margin-top: 2rem; text-align: center; border-top: 1px solid #eee; padding-top: 1rem;">
-                <p>¿Prefieres hablar directo?</p>
-                <a href="https://wa.me/584127422856" target="_blank" style="color: #25D366; font-weight: bold; text-decoration: none;">
-                    Escríbeme al WhatsApp (+58 412 742 2856)
+            <div class="whatsapp-section">
+                <p style="margin-bottom: 0.5rem; color: #666;">¿Necesitas respuesta inmediata?</p>
+                <a href="https://wa.me/584127422856" target="_blank" class="whatsapp-btn-large">
+                    <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Chatear ahora
                 </a>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>© 2026 Academia Bolívar. Todos los derechos reservados.</p>
+        <p>© 2026 PythonAcademy. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // 1. Detectar qué curso viene en la URL
         const params = new URLSearchParams(window.location.search);
         const cursoSeleccionado = params.get('curso');
 
-        // 2. Si hay un curso, actualizar el título y el input oculto
         if (cursoSeleccionado) {
-            // Decodificar caracteres especiales (ej: %20 -> espacio)
             const nombreLimpio = decodeURIComponent(cursoSeleccionado);
-            
             document.getElementById('input-curso').value = nombreLimpio;
+            
+            // Mensaje más amigable
             document.getElementById('mensaje-curso').innerHTML = 
-                `Estás solicitando información para: <br><strong style="color:var(--text-color); font-size:1.1rem;">${nombreLimpio}</strong>`;
+                `Estás a un paso de inscribirte en:<br><strong style="font-size:1.1rem; color:#3776AB;">${nombreLimpio}</strong>`;
         }
     </script>
 
