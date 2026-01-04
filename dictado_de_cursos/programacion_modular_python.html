@@ -163,7 +163,98 @@
             padding: 2rem;
             margin-top: auto;
         }
+/* Estilos de la Sección de Contacto */
+        .contact-section {
+            background-color: var(--white);
+            padding: 4rem 0;
+            border-top: 1px solid #eee;
+        }
 
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366; /* Verde WhatsApp */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1ebe57;
+        }
+
+        /* Estilos del Formulario */
+        .contact-form {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Ajuste para móviles en la sección de contacto */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr; /* Una sola columna en móvil */
+                gap: 2rem;
+            }
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+        
         /* Mobile Adjustments */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
@@ -235,7 +326,53 @@
             </section>
         </div>
     </main>
+<section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                
+                <div class="contact-info">
+                    <h2>¡Reserva tu cupo hoy!</h2>
+                    <p>Los cupos son limitados para garantizar una enseñanza personalizada. Inscríbete ahora o escríbenos si tienes dudas.</p>
+                    
+                    <div class="info-item">
+                        <strong>📧 Email:</strong>
+                        <p>contacto@tudominio.com</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <strong>📱 WhatsApp / Teléfono:</strong>
+                        <p>+58 412 123 4567</p>
+                    </div>
 
+                    <a href="https://wa.me/584121234567" target="_blank" class="whatsapp-btn">
+                        Chatear por WhatsApp
+                    </a>
+                </div>
+
+                <form class="contact-form" action="#" method="POST">
+                    <h3>Formulario de Inscripción</h3>
+                    
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="juan@correo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+58..." required>
+                    </div>
+
+                    <button type="submit" class="cta-button submit-btn">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
     <footer>
         <p>© 2026 Alejandro Bolívar - Curso de Programación Modular. Todos los derechos reservados.</p>
     </footer>
