@@ -349,7 +349,7 @@
                     </a>
                 </div>
 
-                <form class="contact-form" action="#" method="POST">
+                <form class="contact-form" name="submit-to-google-sheet">
                     <h3>Formulario de Inscripción</h3>
                     
                     <div class="form-group">
@@ -376,6 +376,35 @@
     <footer>
         <p>© 2026 Alejandro Bolívar - Curso de Programación Modular. Todos los derechos reservados.</p>
     </footer>
+    
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
 
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      // Cambiar botón para dar feedback visual
+      const btn = form.querySelector('button');
+      const originalText = btn.innerText;
+      btn.innerText = "Enviando...";
+      btn.disabled = true;
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            alert("¡Inscripción exitosa! Te contactaremos pronto.");
+            form.reset(); // Limpia el formulario
+            btn.innerText = originalText;
+            btn.disabled = false;
+        })
+        .catch(error => {
+            alert("Error al enviar. Por favor contáctanos por WhatsApp.");
+            console.error('Error!', error.message);
+            btn.innerText = originalText;
+            btn.disabled = false;
+        })
+    });
+    </script>
+    
 </body>
 </html>
