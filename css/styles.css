@@ -10112,3 +10112,59 @@ section.resume-section .resume-section-content {
     padding-bottom: 5rem;
   }
 }
+
+<style>
+    /* Estilos para las Tarjetas de Cursos */
+    .course-card {
+        border: none;
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        height: 100%; /* Para que todas tengan la misma altura */
+    }
+
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .course-icon {
+        width: 60px;
+        height: 60px;
+        background: #bd5d38; /* Color primario de tu tema (naranja quemado) */
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+    }
+
+    .course-title {
+        font-family: 'Saira Extra Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #343a40;
+    }
+
+    .course-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .course-link:hover {
+        text-decoration: none;
+    }
+
+    .category-badge {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #868e96;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+</style>
