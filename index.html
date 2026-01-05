@@ -647,6 +647,7 @@
                 
             </section>
         </div>
+                            
                 
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -655,23 +656,27 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-                            
 
-                            <script>
+<script>
     $(document).ready(function(){
+        
         $(".filter-button-group .btn").click(function(){
             var value = $(this).attr('data-filter');
             
-            // Cambiar clase activa en botones
+            // 1. Efecto visual en los botones (Cambiar color al activo)
             $(".filter-button-group .btn").removeClass("active");
             $(this).addClass("active");
 
+            // 2. Lógica de filtrado
             if(value == "all") {
-                $('.filter-item').show('1000');
+                // Si es 'todos', muestra todo con una pequeña animación
+                $('.filter-item').fadeIn('1000');
             }
             else {
-                $(".filter-item").not('.'+value).hide('3000');
-                $('.filter-item').filter('.'+value).show('3000');
+                // Oculta los que no coinciden
+                $(".filter-item").not('.'+value).hide();
+                // Muestra los que sí coinciden
+                $('.filter-item').filter('.'+value).fadeIn('1000');
             }
         });
     });
