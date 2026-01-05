@@ -10168,3 +10168,100 @@ section.resume-section .resume-section-content {
         display: block;
     }
 </style>
+
+/* Estilos para el Catálogo de Cursos */
+.filter-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.filter-button-group .btn {
+    border-radius: 20px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.3s;
+}
+
+.filter-button-group .btn.active, 
+.filter-button-group .btn:hover {
+    background-color: #BD5D38; /* Tu color primario */
+    color: white;
+    border-color: #BD5D38;
+}
+
+/* Tarjeta del Curso */
+.course-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    overflow: hidden;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.course-card .card-body {
+    padding: 2rem 1.5rem;
+}
+
+.course-card .card-footer {
+    background: transparent;
+    border-top: 1px solid #f0f0f0;
+    padding: 1rem;
+}
+
+.course-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #BD5D38;
+}
+
+.course-card h4 {
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    min-height: 50px; /* Para alinear alturas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Badges (Etiquetas de color) */
+.badge {
+    padding: 0.4em 0.8em;
+    font-size: 85%;
+    border-radius: 4px;
+    color: white;
+}
+
+.badge-python { background-color: #3776AB; }
+.badge-data { background-color: #28a745; }
+.badge-web { background-color: #e83e8c; }
+.badge-office { background-color: #17a2b8; }
+.badge-cad { background-color: #6610f2; }
+
+/* Animación de filtrado */
+.filter-item {
+    transition: all 0.4s ease-out;
+}
+.filter-item.hide {
+    opacity: 0;
+    transform: scale(0.8);
+    display: none; /* Importante para reacomodar el layout */
+}
+.filter-item.show {
+    animation: fadeIn 0.5s forwards;
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
