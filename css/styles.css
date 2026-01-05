@@ -1,0 +1,187 @@
+/* =========================================
+   MEJORAS VISUALES PARA EL CATÁLOGO DE CURSOS
+   ========================================= */
+
+/* 1. SECCIÓN DE FILTROS (Botones) */
+.filter-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 3rem;
+}
+
+.filter-button-group .btn {
+    border-radius: 50px; /* Botones redondos tipo cápsula */
+    padding: 10px 25px;
+    font-weight: 600;
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    border: 2px solid #dee2e6;
+    color: #6c757d;
+    background: transparent;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.filter-button-group .btn:hover {
+    border-color: #bd5d38;
+    color: #bd5d38;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(189, 93, 56, 0.15);
+}
+
+.filter-button-group .btn.active {
+    background-color: #bd5d38;
+    border-color: #bd5d38;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(189, 93, 56, 0.3);
+    transform: translateY(-2px);
+}
+
+.filter-button-group .btn:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+/* 2. TARJETAS DE CURSOS (Cards) */
+.course-card {
+    border: none;
+    background: #fff;
+    border-radius: 15px; /* Bordes más suaves */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra elegante */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-10px); /* Efecto de elevación */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.course-card .card-body {
+    padding: 2.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Iconos dentro de un círculo */
+.course-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(189, 93, 56, 0.08); /* Fondo naranja muy suave */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.course-icon i {
+    font-size: 2.5rem;
+    color: #bd5d38; /* Tu color primario */
+}
+
+/* Efecto al pasar el mouse sobre la tarjeta: el icono gira un poco */
+.course-card:hover .course-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(189, 93, 56, 0.15);
+}
+
+/* Títulos de las tarjetas */
+.course-card h4.card-title {
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #343a40;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    min-height: 3.6rem; /* Alinea los títulos de 2 líneas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer de la tarjeta */
+.course-card .card-footer {
+    background: white;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 1.5rem;
+}
+
+.course-card .btn-sm {
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #bd5d38;
+    border: none;
+    transition: background 0.3s;
+}
+
+.course-card .btn-sm:hover {
+    background-color: #9c482b; /* Un tono más oscuro de tu naranja */
+}
+
+/* 3. BADGES (Etiquetas de colores personalizados) */
+.badge {
+    padding: 0.5em 1em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: auto; /* Empuja el badge hacia abajo si hay espacio */
+}
+
+/* Colores específicos por tecnología */
+.badge-python { 
+    background-color: #E3F2FD; 
+    color: #1565C0; 
+}
+.badge-data { 
+    background-color: #E8F5E9; 
+    color: #2E7D32; 
+}
+.badge-web { 
+    background-color: #FCE4EC; 
+    color: #C2185B; 
+}
+.badge-office { 
+    background-color: #E0F7FA; 
+    color: #0097A7; 
+}
+.badge-cad { 
+    background-color: #F3E5F5; 
+    color: #7B1FA2; 
+}
+
+/* 4. ANIMACIONES */
+.filter-item {
+    transition: all 0.3s ease;
+}
+
+/* Ajuste responsive para móviles */
+@media (max-width: 768px) {
+    .filter-button-group {
+        display: none; /* Opcional: Ocultar filtros en móvil si ocupan mucho espacio */
+        /* O mejor, hacerlos scrollable horizontalmente: */
+        /* flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+        */
+    }
+    .course-card {
+        margin-bottom: 20px;
+    }
+}
