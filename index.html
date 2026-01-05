@@ -655,5 +655,27 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+                            
+
+                            <script>
+    $(document).ready(function(){
+        $(".filter-button-group .btn").click(function(){
+            var value = $(this).attr('data-filter');
+            
+            // Cambiar clase activa en botones
+            $(".filter-button-group .btn").removeClass("active");
+            $(this).addClass("active");
+
+            if(value == "all") {
+                $('.filter-item').show('1000');
+            }
+            else {
+                $(".filter-item").not('.'+value).hide('3000');
+                $('.filter-item').filter('.'+value).show('3000');
+            }
+        });
+    });
+</script>
+                            
     </body>
 </html>
