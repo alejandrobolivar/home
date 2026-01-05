@@ -74,105 +74,311 @@
             </section>
             <hr class="m-0" />
             <!-- Dictado de Cursos-->
-            <section class="resume-section" id="offercourses">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Dictado de Cursos</h2>
-                    
-                    <div class="row">
-                        
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <a href="dictado_de_cursos/programacion_modular_python.html" class="course-link">
-                                <div class="card course-card p-4 text-center">
-                                    <div class="course-icon"><i class="fab fa-python"></i></div>
-                                    <span class="category-badge">Programación</span>
-                                    <h3 class="course-title">Programación Modular con Python</h3>
-                                    <p class="small text-muted">Aprende a estructurar código profesional.</p>
-                                </div>
-                            </a>
-                        </div>
+<section class="resume-section" id="offercourses">
+    <div class="resume-section-content">
+        <h2 class="mb-4">Dictado de Cursos</h2>
+        <p class="mb-4">Formación especializada por áreas de conocimiento.</p>
 
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <a href="dictado_de_cursos/programacion_estructurada_python.html" class="course-link">
-                                <div class="card course-card p-4 text-center">
-                                    <div class="course-icon"><i class="fas fa-code"></i></div>
-                                    <span class="category-badge">Fundamentos</span>
-                                    <h3 class="course-title">Programación Estructurada</h3>
-                                    <p class="small text-muted">Lógica de programación desde cero con Python.</p>
-                                </div>
-                            </a>
-                        </div>
+        <div class="filter-button-group mb-5">
+            <button class="btn btn-outline-primary active" data-filter="all">Todos</button>
+            <button class="btn btn-outline-primary" data-filter="python">Python y Prog.</button>
+            <button class="btn btn-outline-primary" data-filter="data">Data Science</button>
+            <button class="btn btn-outline-primary" data-filter="web">Desarrollo Web</button>
+            <button class="btn btn-outline-primary" data-filter="office">Office y Gestión</button>
+            <button class="btn btn-outline-primary" data-filter="cad">Ingeniería CAD</button>
+        </div>
 
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <a href="dictado_de_cursos/poo_at_python.html" class="course-link">
-                                <div class="card course-card p-4 text-center">
-                                    <div class="course-icon"><i class="fas fa-cubes"></i></div>
-                                    <span class="category-badge">Avanzado</span>
-                                    <h3 class="course-title">POO con Python</h3>
-                                    <p class="small text-muted">Domina la Programación Orientada a Objetos.</p>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card course-card p-4 text-center">
-                                <div class="course-icon"><i class="fas fa-chart-line"></i></div>
-                                <span class="category-badge">Data Science</span>
-                                <h3 class="course-title">Análisis de Datos con Pandas</h3>
-                                <p class="small text-muted">Manipulación y limpieza de datos.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card course-card p-4 text-center">
-                                <div class="course-icon"><i class="fas fa-chart-pie"></i></div>
-                                <span class="category-badge">Visualización</span>
-                                <h3 class="course-title">Visualización con MatPlotLib</h3>
-                                <p class="small text-muted">Crea gráficos profesionales e impactantes.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card course-card p-4 text-center">
-                                <div class="course-icon"><i class="fas fa-brain"></i></div>
-                                <span class="category-badge">Machine Learning</span>
-                                <h3 class="course-title">Aprendizaje Automático</h3>
-                                <p class="small text-muted">Modelos predictivos con SkLearn.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card course-card p-4 text-center">
-                                <div class="course-icon"><i class="fas fa-laptop-code"></i></div>
-                                <span class="category-badge">Desarrollo Web</span>
-                                <h3 class="course-title">Apps Web con Flask & Streamlit</h3>
-                                <p class="small text-muted">Crea aplicaciones web dinámicas.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card course-card p-4 text-center">
-                                <div class="course-icon"><i class="fas fa-drafting-compass"></i></div>
-                                <span class="category-badge">Ingeniería</span>
-                                <h3 class="course-title">AutoCAD 2D y 3D</h3>
-                                <p class="small text-muted">Diseño asistido por computadora desde cero.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card course-card p-4 text-center">
-                                <div class="course-icon"><i class="fas fa-tasks"></i></div>
-                                <span class="category-badge">Gestión</span>
-                                <h3 class="course-title">Microsoft Project & Excel</h3>
-                                <p class="small text-muted">Gestión de proyectos y dashboards.</p>
-                            </div>
-                        </div>
-
-                    </div> <div class="text-center mt-4">
-                        <a href="#contacto" class="btn btn-primary btn-lg shadow">Solicitar Información General</a>
+        <div class="row course-grid">
+            
+            <div class="col-lg-4 col-md-6 mb-4 filter-item python">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fab fa-python"></i></div>
+                        <h4 class="card-title">Aprende a Programar</h4>
+                        <span class="badge badge-python">Fundamentos</span>
                     </div>
-
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Aprende a Programar" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
                 </div>
-            </section>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item python">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-code"></i></div>
+                        <h4 class="card-title">Programación Estructurada (Python)</h4>
+                        <span class="badge badge-python">Lógica</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="dictado_de_cursos/programacion_estructurada_python.html" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item python">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h4 class="card-title">Programación Modular (Python)</h4>
+                        <span class="badge badge-python">Arquitectura</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="dictado_de_cursos/programacion_modular_python.html" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item python">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-cubes"></i></div>
+                        <h4 class="card-title">POO con Python</h4>
+                        <span class="badge badge-python">Avanzado</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="dictado_de_cursos/poo_at_python.html" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item python">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-window-maximize"></i></div>
+                        <h4 class="card-title">Interfaces Gráficas en Python</h4>
+                        <span class="badge badge-python">Desktop Apps</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Interfaces Graficas Python" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item python">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-terminal"></i></div>
+                        <h4 class="card-title">Lenguaje C</h4>
+                        <span class="badge badge-python">Bajo Nivel</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Lenguaje C" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item data">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-database"></i></div>
+                        <h4 class="card-title">SQL y Base de Datos (SQLite)</h4>
+                        <span class="badge badge-data">Backend</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=SQL SQLite" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item data">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-table"></i></div>
+                        <h4 class="card-title">Análisis de Datos con Pandas</h4>
+                        <span class="badge badge-data">Análisis</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Pandas" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item data">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-chart-area"></i></div>
+                        <h4 class="card-title">Visualización con MatPlotLib</h4>
+                        <span class="badge badge-data">Gráficos</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=MatPlotLib" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item data">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-square-root-alt"></i></div>
+                        <h4 class="card-title">Matemáticas Data Science (Numpy)</h4>
+                        <span class="badge badge-data">Cálculo</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Numpy" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item data">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-brain"></i></div>
+                        <h4 class="card-title">Machine Learning (SkLearn)</h4>
+                        <span class="badge badge-data">IA</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Machine Learning" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item web">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fab fa-chrome"></i></div>
+                        <h4 class="card-title">Apps Web con Streamlit</h4>
+                        <span class="badge badge-web">Rápido</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Streamlit" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item web">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-flask"></i></div>
+                        <h4 class="card-title">Apps Web con Flask</h4>
+                        <span class="badge badge-web">Backend Web</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Flask" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item web">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fab fa-html5"></i></div>
+                        <h4 class="card-title">Diseño de Páginas Web</h4>
+                        <span class="badge badge-web">Frontend</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Diseño Web" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item office">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-file-excel"></i></div>
+                        <h4 class="card-title">Microsoft Excel Básico</h4>
+                        <span class="badge badge-office">Ofimática</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Excel Basico" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item office">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-file-excel"></i></div>
+                        <h4 class="card-title">Microsoft Excel Avanzado</h4>
+                        <span class="badge badge-office">Ofimática</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Excel Avanzado" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item office">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h4 class="card-title">Dashboards Interactivos en Excel</h4>
+                        <span class="badge badge-office">Reportes</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Excel Dashboards" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item office">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-file-word"></i></div>
+                        <h4 class="card-title">Microsoft Word (Básico/Avanzado)</h4>
+                        <span class="badge badge-office">Documentos</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=Word" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item office">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-tasks"></i></div>
+                        <h4 class="card-title">Gestión de Proyectos (MS Project)</h4>
+                        <span class="badge badge-office">Gerencia</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=MS Project" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item cad">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-pencil-ruler"></i></div>
+                        <h4 class="card-title">AutoCAD 2D Básico</h4>
+                        <span class="badge badge-cad">Diseño</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=AutoCAD 2D Basico" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item cad">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-drafting-compass"></i></div>
+                        <h4 class="card-title">AutoCAD 2D Intermedio</h4>
+                        <span class="badge badge-cad">Diseño</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=AutoCAD 2D Intermedio" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 filter-item cad">
+                <div class="card course-card h-100">
+                    <div class="card-body text-center">
+                        <div class="course-icon"><i class="fas fa-cube"></i></div>
+                        <h4 class="card-title">AutoCAD 3D</h4>
+                        <span class="badge badge-cad">Modelado</span>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="contactame.html?curso=AutoCAD 3D" class="btn btn-sm btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+
+        </div> </div>
+</section>
+            
             
             <hr class="m-0" />
             <!-- Experience-->
