@@ -10132,7 +10132,7 @@ section.resume-section .resume-section-content {
     .course-icon {
         width: 60px;
         height: 60px;
-        background: #bd5d38; /* Color primario de tu tema (naranja quemado) */
+        background: #0056b3; /* Color primario de tu tema (naranja quemado) */
         color: white;
         border-radius: 50%;
         display: flex;
@@ -10186,9 +10186,9 @@ section.resume-section .resume-section-content {
 
 .filter-button-group .btn.active, 
 .filter-button-group .btn:hover {
-    background-color: #BD5D38; /* Tu color primario */
+    background-color: #0056b3; /* Tu color primario */
     color: white;
-    border-color: #BD5D38;
+    border-color: #0056b3;
 }
 
 /* Tarjeta del Curso */
@@ -10219,7 +10219,7 @@ section.resume-section .resume-section-content {
 .course-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: #BD5D38;
+    color: #0056b3;
 }
 
 .course-card h4 {
