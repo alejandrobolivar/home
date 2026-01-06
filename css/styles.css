@@ -10279,47 +10279,50 @@ section.resume-section .resume-section-content {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Sombra suave para leer mejor */
 }
 
-/* =========================================
-   1. BOTONES DE FILTRO DE CURSOS (AZUL)
-   ========================================= */
+/* ==================================================
+   CORRECCIÓN FINAL OBLIGATORIA (FORCE BLUE)
+   ================================================== */
 
-/* Estado normal (sin seleccionar) */
-.filter-button-group .btn {
-    color: #0056b3 !important;           /* Texto Azul */
-    border: 2px solid #0056b3 !important;/* Borde Azul */
-    background-color: transparent !important;
-    font-weight: 600;
+/* 1. Truco: Engañamos al sistema redefiniendo el color primario y el naranja */
+:root {
+    --primary: #0056b3 !important;
+    --orange: #0056b3 !important; /* Si algo llama al 'orange', saldrá azul */
 }
 
-/* Estado al pasar el mouse (Hover) y Activo (Seleccionado) */
+/* 2. Forzar Botones de Filtro (Todos, Python, etc.) */
+.filter-button-group .btn,
+.filter-button-group .btn-outline-primary {
+    color: #0056b3 !important;           /* Texto Azul */
+    border-color: #0056b3 !important;    /* Borde Azul */
+    background-color: transparent !important;
+}
+
+.filter-button-group .btn.active, 
 .filter-button-group .btn:hover,
-.filter-button-group .btn.active,
 .filter-button-group .btn:focus {
     background-color: #0056b3 !important; /* Fondo Azul Sólido */
-    color: #ffffff !important;            /* Texto Blanco */
     border-color: #0056b3 !important;
-    box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3); /* Sombra suave */
+    color: #ffffff !important;            /* Texto Blanco */
+    box-shadow: none !important;
 }
 
-/* =========================================
-   2. BOTÓN "VER DETALLES" (AZUL)
-   ========================================= */
-
-/* Estado normal */
+/* 3. Forzar Botón "Ver Detalles" */
+.course-card .btn,
 .course-card .btn-sm,
-.course-card .btn {
+a.btn-primary, 
+button.btn-primary {
     background-color: #0056b3 !important; /* Fondo Azul */
-    border-color: #0056b3 !important;
+    border-color: #0056b3 !important;     /* Borde Azul */
     color: #ffffff !important;            /* Texto Blanco */
-    border-radius: 50px;                  /* Redondeado */
-    padding: 8px 20px;
 }
 
-/* Estado al pasar el mouse */
-.course-card .btn-sm:hover,
-.course-card .btn:hover {
-    background-color: #003366 !important; /* Azul más oscuro */
+.course-card .btn:hover,
+.course-card .btn-sm:hover {
+    background-color: #003366 !important; /* Azul más oscuro al pasar mouse */
     border-color: #003366 !important;
-    transform: translateY(-2px);          /* Pequeña elevación */
-    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.4);
+}
+
+/* 4. Asegurar que los enlaces de texto también sean azules */
+a.text-primary, .text-primary {
+    color: #0056b3 !important;
 }
