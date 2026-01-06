@@ -1,0 +1,353 @@
+@charset "UTF-8";
+
+/*!
+ * Estilos Profesionales - Academia Bolívar
+ * Tema: Azul Corporativo & Diseño Moderno
+ */
+
+:root {
+  /* Paleta de Colores */
+  --primary: #0056b3;       /* Azul Principal */
+  --primary-dark: #003366;  /* Azul Oscuro (Sidebar) */
+  --primary-light: #e3f2fd; /* Azul Muy Claro */
+  --accent: #ffc107;        /* Amarillo para detalles pequeños */
+  --text-main: #343a40;
+  --text-muted: #6c757d;
+  --bg-body: #f8f9fa;
+  --white: #ffffff;
+  
+  /* Fuentes */
+  --font-heading: 'Saira Extra Condensed', sans-serif;
+  --font-body: 'Muli', sans-serif;
+}
+
+/* =========================================
+   ESTRUCTURA GENERAL
+   ========================================= */
+
+body {
+  font-family: var(--font-body);
+  padding-top: 54px;
+  color: var(--text-muted);
+  background-color: var(--bg-body);
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 0;
+    padding-left: 17rem; /* Espacio para la sidebar */
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+h1 { line-height: 1; font-size: 6rem; }
+h2 { font-size: 3.5rem; line-height: 3.5rem; }
+h3 { font-size: 1.75rem; }
+
+a { color: var(--primary); transition: all 0.2s; }
+a:hover { color: var(--primary-dark); text-decoration: none; }
+
+.subheading {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--text-muted);
+}
+
+/* =========================================
+   NAVEGACIÓN (SIDEBAR) & FOTO DE PERFIL
+   ========================================= */
+
+#sideNav {
+  background-color: var(--primary-dark);
+}
+
+#sideNav .navbar-brand {
+  display: flex;
+  margin: auto auto 0;
+  padding: 0.5rem;
+}
+
+/* --- AQUÍ ESTÁ EL TRUCO PARA EL CÍRCULO PERFECTO --- */
+#sideNav .navbar-brand .img-profile {
+  width: 10rem;           /* Ancho fijo */
+  height: 10rem;          /* Alto fijo igual al ancho */
+  max-width: 10rem;
+  max-height: 10rem;
+  border: 0.5rem solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;     /* Esto hace el círculo */
+  object-fit: cover;      /* Evita que la foto se estire o deforme */
+  object-position: center;
+  transition: border-color 0.3s ease;
+}
+
+#sideNav .navbar-brand:hover .img-profile {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#sideNav .navbar-collapse {
+  display: flex;
+  align-items: flex-start;
+  flex-grow: 0;
+  width: 100%;
+  margin-bottom: auto;
+}
+
+#sideNav .navbar-collapse .navbar-nav {
+  flex-direction: column;
+  width: 100%;
+}
+
+#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.75rem 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  letter-spacing: 0.05rem;
+  transition: all 0.3s;
+}
+
+#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link:hover, 
+#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link:focus {
+  color: #fff;
+  padding-left: 1.5rem; /* Efecto de desplazamiento */
+  background: rgba(0,0,0,0.1);
+}
+
+#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link.active {
+  color: #fff;
+  border-left: 5px solid var(--accent); /* Línea amarilla al activo */
+  background: rgba(0,0,0,0.2);
+}
+
+@media (min-width: 992px) {
+  #sideNav {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    height: 100vh;
+  }
+}
+
+/* =========================================
+   SECCIONES Y CONTENIDO
+   ========================================= */
+
+section.resume-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+section.resume-section .resume-section-content {
+  width: 100%;
+}
+
+/* Iconos Sociales */
+.social-icons .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: var(--text-main);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
+  transition: all 0.3s;
+}
+
+.social-icons .social-icon:hover {
+  background-color: var(--primary);
+  transform: translateY(-5px);
+}
+
+/* =========================================
+   CATÁLOGO DE CURSOS (ESTILO PROFESIONAL)
+   ========================================= */
+
+/* 1. BOTONES DE FILTRO */
+.filter-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 3.5rem;
+}
+
+.filter-button-group .btn {
+    border-radius: 50px;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border: 1px solid #e0e0e0;
+    color: var(--text-muted);
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.filter-button-group .btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 86, 179, 0.1);
+}
+
+.filter-button-group .btn.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.25);
+    transform: translateY(-2px);
+}
+
+/* 2. TARJETAS DE CURSOS (CARD DESIGN) */
+.course-card {
+    border: none;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    /* Sombra suave por defecto */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    /* Sombra azulada al levantar */
+    box-shadow: 0 20px 40px rgba(0, 86, 179, 0.12); 
+    border-color: rgba(0, 86, 179, 0.1);
+}
+
+.course-card .card-body {
+    padding: 2.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Iconos dentro de las tarjetas */
+.course-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--primary-light);
+    border-radius: 20px; /* Cuadrado redondeado moderno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+    color: var(--primary);
+}
+
+.course-icon i {
+    font-size: 2rem;
+}
+
+.course-card:hover .course-icon {
+    transform: rotate(10deg) scale(1.1);
+    background: var(--primary); /* El fondo se vuelve azul */
+    color: #fff; /* El icono se vuelve blanco */
+}
+
+/* Títulos de cursos */
+.course-card h4.card-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    min-height: 3.4rem; /* Alineación */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer de Tarjeta */
+.course-card .card-footer {
+    background: transparent;
+    border-top: 1px dashed #e9ecef;
+    padding: 1.2rem;
+    width: 100%;
+    text-align: center;
+}
+
+/* Botones "Ver Detalles" */
+.course-card .btn-sm {
+    border-radius: 30px;
+    padding: 8px 22px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    transition: all 0.3s;
+}
+
+.course-card .btn-sm:hover {
+    background-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 86, 179, 0.2);
+}
+
+/* 3. ETIQUETAS (BADGES) ESTILO PASTEL */
+.badge {
+    padding: 0.5em 1em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+/* Colores Pastel Profesionales */
+.badge-python { background-color: #E3F2FD; color: #0D47A1; }
+.badge-data   { background-color: #E8F5E9; color: #1B5E20; }
+.badge-web    { background-color: #F3E5F5; color: #4A148C; }
+.badge-office { background-color: #E0F7FA; color: #006064; }
+.badge-cad    { background-color: #FFF3E0; color: #E65100; }
+
+/* 4. ANIMACIONES */
+.filter-item {
+    transition: all 0.3s ease;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+    .filter-button-group {
+        display: none; /* En móviles ocultamos filtros o se pueden hacer scroll */
+    }
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+}
