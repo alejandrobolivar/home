@@ -1,1 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Microsoft Project Básico. Aprende planificación, costos, diagrama de Gantt y seguimiento de proyectos. Duración: 16 Horas.">
+    <title>Gestión de Proyectos con MS Project | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS PARA MS PROJECT (VERDE) --- */
+        :root {
+            --primary-color: #2E7D32; /* Verde Project Oscuro */
+            --primary-light: #4CAF50; /* Verde Project Claro */
+            --secondary-color: #FFC107; /* Amarillo para detalles */
+            --text-color: #333;
+            --bg-light: #f9fbf9;
+            --white: #ffffff;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: #1b5e20;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-bottom: 1px solid #dce7dc;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #1b5e20;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #444;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            min-width: 200px;
+            border-top: 4px solid var(--primary-light);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: #777;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin-top: 5px;
+            border-radius: 2px;
+        }
+
+        .content-text {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            text-align: justify;
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-item {
+            background: var(--white);
+            padding: 2rem;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .module-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.6rem;
+            padding-left: 1.2rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .module-list li::before {
+            content: "✓";
+            color: var(--primary-light);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #1b5e20;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-project-diagram"></i> Project Academy</div>
+            <a href="contactame.html?curso=Microsoft Project Basico" class="cta-button">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Microsoft Project Básico</h1>
+            <p>Planifica proyectos, gestiona recursos, controla costos y realiza seguimientos eficientes con la herramienta estándar de la industria.</p>
+            <a href="#temario" class="cta-button" style="background: transparent; color: #1b5e20; border: 2px solid #1b5e20;">Ver Contenido</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>16 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Teórico-Práctico</h3>
+                <p>Metodología</p>
+            </div>
+            <div class="info-card">
+                <h3>Certificado</h3>
+                <p>Diploma Incluido</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Descripción y Objetivos</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Proporcionar al participante el conocimiento básico para realizar un plan de proyecto y realizar un seguimiento eficiente de este utilizando como herramienta Microsoft Project.</p>
+                    <br>
+                    <p>No se requieren conocimientos previos de Project. Obtendrá conocimientos en planificación de tareas, relaciones, vistas del proyecto, costos, asignación de recursos y seguimiento.</p>
+                    <br>
+                    <p><strong>Estrategia Metodológica:</strong> El curso sigue un proceso de capacitación Teórico – Práctico. Seguido a la explicación del facilitador, los alumnos realizarán ejercicios prácticos individuales en computadora para fijar los conocimientos.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item" style="border-left-color: var(--secondary-color);">
+                        <h3><i class="fas fa-user-tie"></i> Perfil del Participante</h3>
+                        <p>Gerentes, líderes, supervisores, coordinadores, personal técnico o cualquier profesional que requiera participar en las actividades de realización de proyectos (planificadores y controladores).</p>
+                    </div>
+                    <div class="module-item" style="border-left-color: var(--secondary-color);">
+                        <h3><i class="fas fa-laptop"></i> Requisitos Previos</h3>
+                        <p>Usuarios familiarizados con el ambiente Windows. No se requieren conocimientos previos de MS Project.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3>1. Conceptos Básicos</h3>
+                        <ul class="module-list">
+                            <li>Definición de Proyectos, Gantt y PERT.</li>
+                            <li>Entorno de trabajo y personalización de barras.</li>
+                            <li>Creación de proyectos y uso de plantillas.</li>
+                            <li>Configuración de calendarios y fechas clave.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>2. La Guía y Vistas</h3>
+                        <ul class="module-list">
+                            <li>Uso de la Guía de Proyectos.</li>
+                            <li>Vistas: Gantt, Red, Calendario y Uso de tareas.</li>
+                            <li>Tablas y Vistas combinadas.</li>
+                            <li>Filtros y Organizador de vistas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>3. Asignación de Tareas</h3>
+                        <ul class="module-list">
+                            <li>Creación y organización de lista de tareas.</li>
+                            <li>Hitos y tareas repetitivas.</li>
+                            <li><strong>Dependencias:</strong> Vinculación entre tareas.</li>
+                            <li>Delimitaciones y división de tareas.</li>
+                            <li>Ruta Crítica.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>4. Definición de Recursos</h3>
+                        <ul class="module-list">
+                            <li>Hoja de recursos y tipos (Trabajo, Material, Costo).</li>
+                            <li>Personalización de horarios de trabajo.</li>
+                            <li>Asignación de recursos a tareas.</li>
+                            <li>Redistribución y manejo de sobreasignaciones.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>5. Asignación de Costos</h3>
+                        <ul class="module-list">
+                            <li>Costos fijos, variables y horas extras.</li>
+                            <li>Tablas de tasas de costo.</li>
+                            <li>Análisis del valor acumulado.</li>
+                            <li>Presupuesto total del proyecto.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>6. Informes e Impresión</h3>
+                        <ul class="module-list">
+                            <li>Configuración de impresión y vistas previas.</li>
+                            <li>Generación de informes estándar.</li>
+                            <li>Creación de informes personalizados.</li>
+                            <li>Exportación de datos.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+            
+            <section id="recursos">
+                <h2>Recursos Incluidos</h2>
+                <div class="content-text" style="text-align: center;">
+                    <p><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Computadores de última generación por participante.</p>
+                    <p><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Material de apoyo y manual digital.</p>
+                    <p><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Diploma de participación.</p>
+                    <p><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> Refrigerio matutino y vespertino.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de Microsoft Project. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Enviando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
