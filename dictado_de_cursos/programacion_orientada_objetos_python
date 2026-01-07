@@ -429,7 +429,7 @@
                 <h2>Instructor</h2>
                 <div class="content-text" style="background: #fff; border-left: 5px solid var(--accent-color);">
                     <h3>MSc. Ing. Alejandro Bolívar</h3>
-                    <p>Arquitecto de Software y Pythonista. Te enseñará a diseñar sistemas que no solo funcionen hoy, sino que sean fáciles de entender y modificar mañana.</p>
+                    <p>Te enseñará a diseñar sistemas que no solo funcionen hoy, sino que sean fáciles de entender y modificar mañana.</p>
                 </div>
             </section>
 
