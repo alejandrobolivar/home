@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Desarrollo Web Backend con Flask. Aprende Rutas, Jinja2, Bases de Datos y Autenticación. Duración: 32 Horas.">
+    <title>Desarrollo Backend con Flask | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS FLASK (MINIMALISTA BLANCO Y NEGRO) --- */
+        :root {
+            --primary-color: #000000; /* Negro Puro (Flask) */
+            --primary-light: #333333; /* Gris Oscuro */
+            --accent-color: #40c463;  /* Verde sutil para éxito/python */
+            --text-color: #2e2e2e;
+            --bg-light: #fcfcfc;
+            --white: #ffffff;
+            --code-bg: #1e1e1e;       /* Fondo oscuro para código */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fira Code', monospace; /* Estilo técnico */
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px; /* Bordes rectos para seriedad */
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background-color: var(--white);
+            /* Patrón de líneas finas */
+            background-image: linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
+            background-size: 40px 40px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            min-width: 200px;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: #777;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-light);
+            margin-top: 5px;
+        }
+
+        .content-text {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            text-align: justify;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-item {
+            background: var(--white);
+            padding: 2rem;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        .module-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 0;
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Icono de terminal para items */
+        .module-list li::before {
+            content: ">";
+            font-family: 'Fira Code', monospace;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Etiquetas de código (estilo terminal) */
+        .code-tag {
+            background-color: var(--code-bg);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+        }
+        
+        .code-tag.green { color: var(--accent-color); }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-flask"></i> Flask Dev</div>
+            <a href="contactame.html?curso=Desarrollo Web con Flask" class="cta-button">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Desarrollo Web Backend con Flask</h1>
+            <p>Simple, flexible y poderoso. Aprende a construir el "cerebro" detrás de las aplicaciones web modernas usando el micro-framework favorito de Python.</p>
+            <a href="#temario" class="cta-button" style="background: transparent; color: var(--primary-color);">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>32 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Intermedio</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Backend</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Construir aplicaciones web robustas y escalables utilizando el micro-framework Flask de Python, comprendiendo a profundidad el funcionamiento del Backend.</p>
+                    <br>
+                    <p>A diferencia de frameworks pesados, Flask te da el control total. En este curso no solo aprenderás a escribir código, sino a entender cómo funciona el servidor, cómo viajan los datos HTTP y cómo conectar tu aplicación con bases de datos reales. Es el paso definitivo para convertirte en un <strong>Backend Developer</strong>.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item">
+                        <h3><i class="fas fa-server"></i> Backend Aspirants</h3>
+                        <p>Para desarrolladores Python que quieren saltar de la consola a la web, creando APIs y sitios dinámicos.</p>
+                    </div>
+                    <div class="module-item">
+                        <h3><i class="fas fa-layer-group"></i> Full Stack Devs</h3>
+                        <p>Para quienes ya saben Frontend (HTML/CSS) y necesitan un motor lógico potente y flexible en el servidor.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3><i class="fas fa-map-signs"></i> 1. Fundamentos</h3>
+                        <ul class="module-list">
+                            <li>El patrón de diseño MVT (Modelo-Vista-Template).</li>
+                            <li>Rutas y Vistas: <span class="code-tag green">@app.route('/')</span>.</li>
+                            <li>Estructura profesional de carpetas (static, templates).</li>
+                            <li>Manejo de variables en la URL.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-code"></i> 2. Plantillas Jinja2</h3>
+                        <ul class="module-list">
+                            <li>Renderizado de HTML dinámico: <span class="code-tag">render_template</span>.</li>
+                            <li>Lógica en HTML: Bucles y Condicionales.</li>
+                            <li>Herencia de plantillas: <span class="code-tag green">{% extends %}</span>.</li>
+                            <li>Filtros y macros personalizados.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-database"></i> 3. Datos y Formularios</h3>
+                        <ul class="module-list">
+                            <li>Métodos HTTP: <span class="code-tag">GET</span> vs <span class="code-tag">POST</span>.</li>
+                            <li>Manejo de Formularios con <strong>WTForms</strong>.</li>
+                            <li>Conexión a Bases de Datos (SQLAlchemy).</li>
+                            <li>Validación de datos y mensajes flash.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-shield-alt"></i> 4. Arquitectura</h3>
+                        <ul class="module-list">
+                            <li>Autenticación de usuarios (Flask-Login).</li>
+                            <li>Hash de contraseñas y seguridad.</li>
+                            <li>Escalabilidad con <strong>Blueprints</strong>.</li>
+                            <li>Despliegue básico en servidor (Deploy).</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text" style="background: white; border: 1px solid #000;">
+                    <h3>MSc. Ing. Alejandro Bolívar</h3>
+                    <p>Ingeniero de Software especializado en Backend. Te enseñará a crear aplicaciones seguras y bien estructuradas, listas para producción.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de Flask. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Enviando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
