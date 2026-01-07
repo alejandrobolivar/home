@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de AutoCAD 2D Intermedio. Aprende Bloques Dinámicos, Xrefs, Acotado Avanzado y Layouts para impresión profesional. Duración: 20 Horas.">
+    <title>AutoCAD 2D Intermedio | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS AUTOCAD INTERMEDIO (DARK + GOLD) --- */
+        :root {
+            --cad-red: #E01E26;      /* Rojo Autodesk */
+            --cad-bg: #1e1e1e;       /* Fondo Oscuro */
+            --cad-panel: #2b2b2b;    /* Fondo Paneles */
+            --cad-text: #e0e0e0;     /* Texto Claro */
+            --cad-accent: #FFD700;   /* Amarillo/Dorado (Cotas/Texto) */
+            --cad-grid: rgba(255,255,255,0.05);
+            --paper-white: #f0f0f0;  /* Simulación de Layout */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--cad-text);
+            background-color: #121212;
+        }
+
+        /* Header */
+        header {
+            background: var(--cad-panel);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--cad-accent); /* Borde dorado */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span { color: var(--cad-red); }
+        .logo small { font-size: 0.8rem; color: var(--cad-accent); margin-left: 5px; text-transform: uppercase; letter-spacing: 1px;}
+
+        .cta-button {
+            background-color: transparent;
+            color: var(--cad-accent);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 1px solid var(--cad-accent);
+        }
+
+        .cta-button:hover {
+            background-color: var(--cad-accent);
+            color: #121212;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background-color: var(--cad-bg);
+            /* Patrón de Grid más complejo para denotar nivel avanzado */
+            background-image: 
+                linear-gradient(var(--cad-grid) 1px, transparent 1px), 
+                linear-gradient(90deg, var(--cad-grid) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            color: var(--cad-accent);
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #aaa;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            background: var(--cad-panel);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            min-width: 200px;
+            border-bottom: 3px solid var(--cad-accent);
+        }
+
+        .info-card h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 500;
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: #fff;
+            border-bottom: 1px solid #444;
+        }
+
+        h2::before {
+            content: 'Select objects: ';
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            color: var(--cad-accent);
+            margin-right: 10px;
+            opacity: 0.7;
+        }
+
+        .content-text {
+            background: var(--cad-panel);
+            padding: 2rem;
+            border-radius: 4px;
+            border-right: 4px solid var(--cad-accent); /* Cambio de lado del borde */
+            color: #ccc;
+            text-align: justify;
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-item {
+            background: var(--cad-panel);
+            padding: 2rem;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--cad-accent);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+        }
+
+        .module-item h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .module-item h3 i { color: var(--cad-accent); }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 0;
+            font-size: 0.95rem;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Estilo de "Comando" */
+        .cmd-tag {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #1a1a1a;
+            color: var(--cad-accent);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            border: 1px dashed #555;
+        }
+
+        /* Estilo para simular Layout/Papel */
+        .layout-preview {
+            background: var(--paper-white);
+            color: #333;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            font-family: 'Roboto Mono', monospace;
+            text-align: center;
+            border: 1px solid #999;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #777;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            border-top: 1px solid #333;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-drafting-compass"></i><span>Auto</span>CAD <small>INTERMEDIO</small></div>
+            <a href="contactame.html?curso=AutoCAD 2D Intermedio" class="cta-button">Inscribirme</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>AutoCAD 2D <span>Intermedio</span></h1>
+            <p>Deja de dibujar línea por línea. Optimiza tu flujo de trabajo, automatiza tareas repetitivas y configura planos listos para impresión profesional.</p>
+            <a href="#temario" class="cta-button">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>20 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Intermedio</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Gestión y Ploteo</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Optimizar el flujo de trabajo en el diseño asistido por computadora mediante el uso de bloques, referencias externas y preparación profesional de planos para impresión.</p>
+                    <br>
+                    <p>En el nivel básico aprendiste a dibujar; en este nivel aprenderás a <strong>producir</strong>. Este curso está diseñado para que dejes de perder tiempo editando elementos uno por uno. Dominarás la gestión de bases de datos del dibujo (bloques con atributos, tablas) y entenderás definitivamente cómo funciona el Espacio Papel (Layouts) para que tus planos salgan impresos a la escala exacta, siempre.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item">
+                        <h3><i class="fas fa-stopwatch"></i> Dibujantes Activos</h3>
+                        <p>Para quienes ya usan AutoCAD pero sienten que sus procesos son lentos y quieren automatizar tareas repetitivas.</p>
+                    </div>
+                    <div class="module-item">
+                        <h3><i class="fas fa-print"></i> Coordinadores CAD</h3>
+                        <p>Para quienes necesitan estandarizar estilos de impresión, capas y formatos de presentación en su oficina.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3><i class="fas fa-cube"></i> 1. Bloques Avanzados</h3>
+                        <ul class="module-list">
+                            <li>Creación y Redefinición de Bloques <span class="cmd-tag">BLOCK</span>.</li>
+                            <li>Editor de Bloques y parámetros base.</li>
+                            <li>Bloques con Atributos (Rótulos inteligentes) <span class="cmd-tag">ATTDEF</span>.</li>
+                            <li>Extracción de datos a tablas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-project-diagram"></i> 2. Gestión Externa</h3>
+                        <ul class="module-list">
+                            <li>Referencias Externas <span class="cmd-tag">XREF</span>: Trabajo colaborativo.</li>
+                            <li>Superposición vs. Enlace (Overlay vs Attach).</li>
+                            <li>Gestión de imágenes y PDFs importados.</li>
+                            <li>Creación y estilo de Tablas <span class="cmd-tag">TABLE</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-ruler-combined"></i> 3. Acotado y Estilos</h3>
+                        <ul class="module-list">
+                            <li>Administrador de estilos de cota <span class="cmd-tag">DIMSTYLE</span>.</li>
+                            <li>Cotas anotativas (ajuste automático de escala).</li>
+                            <li>Directrices múltiples <span class="cmd-tag">MLEADER</span> para notas.</li>
+                            <li>Campos de texto automáticos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-file-pdf"></i> 4. Salida de Planos</h3>
+                        <ul class="module-list">
+                            <li>Diferencia Model Space vs Paper Space <span class="cmd-tag">LAYOUT</span>.</li>
+                            <li>Ventanas gráficas <span class="cmd-tag">MVIEW</span> y escalas (1:50, 1:100).</li>
+                            <li>Configuración de plumillas (CTB/STB).</li>
+                            <li>Impresión a PDF y Ploteo <span class="cmd-tag">PLOT</span>.</li>
+                        </ul>
+                        <div class="layout-preview">
+                            [ TITLE BLOCK - SCALE 1:100 ]
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text" style="background: var(--cad-panel); border: none; border-left: 4px solid var(--cad-accent);">
+                    <h3>Arq. Alejandro Bolívar</h3>
+                    <p>Consultor CAD. Especialista en estandarización de proyectos y eficiencia en el dibujo. Te enseñará los trucos que no salen en los manuales básicos.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de AutoCAD. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Procesando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
