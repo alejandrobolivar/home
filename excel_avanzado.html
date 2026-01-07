@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Excel Avanzado. Domina BUSCARX, Tablas Dinámicas, Escenarios y Grabadora de Macros. Duración: 24 Horas.">
+    <title>Excel Avanzado | Business Intelligence & Automatización</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS EXCEL AVANZADO (PRO) --- */
+        :root {
+            --adv-green: #185C37;     /* Verde Bosque Profundo */
+            --adv-dark: #0f3d24;      /* Fondo oscuro para secciones */
+            --adv-accent: #21a366;    /* Verde Vibrante para acentos */
+            --adv-gold: #FFD700;      /* Dorado para detalles "Premium" */
+            --text-dark: #2c3e50;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --formula-bg: #e8f5e9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--adv-green);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--adv-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { color: var(--adv-accent); font-size: 1.8rem; }
+        .logo span { color: var(--text-dark); font-weight: 300; }
+        .logo .badge {
+            background: var(--adv-gold);
+            color: var(--adv-dark);
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 800;
+            transform: translateY(-5px);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--adv-green) 0%, var(--adv-accent) 100%);
+            color: var(--white);
+            padding: 0.6rem 1.8rem;
+            text-decoration: none;
+            border-radius: 50px; /* Botón redondeado moderno */
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(24, 92, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(24, 92, 55, 0.4);
+        }
+
+        /* Hero Section - Estilo "Data Analysis" */
+        .hero {
+            text-align: center;
+            padding: 7rem 1rem;
+            background-color: var(--adv-dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fondo abstracto de datos */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=');
+            opacity: 0.6;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+        
+        .hero h1 span { 
+            color: var(--adv-accent); 
+            background: -webkit-linear-gradient(eee, var(--adv-accent));
+            -webkit-background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #d0d0d0;
+            font-weight: 300;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 200px;
+            border-top: 5px solid var(--adv-accent);
+        }
+
+        .info-card h3 {
+            color: var(--adv-green);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: #888;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 6rem; }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            color: var(--adv-green);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--adv-accent);
+            margin-top: 10px;
+        }
+
+        .content-text {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            text-align: justify;
+            border-left: 6px solid var(--adv-green);
+            font-size: 1.05rem;
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .module-item {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(24, 92, 55, 0.15);
+            border-color: var(--adv-accent);
+        }
+
+        /* --- ESTILO DE IMAGEN CIRCULAR (Igual a otros cursos) --- */
+        .module-item h3 {
+            color: var(--adv-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .module-item h3 img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 15px;
+            
+            /* Borde doble para toque "Avanzado" */
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--adv-green); 
+            
+            transition: transform 0.3s ease;
+        }
+
+        .module-item:hover h3 img {
+            transform: scale(1.1) rotate(5deg);
+        }
+        /* ---------------------------------------------------- */
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        /* Icono de lista tipo "Data" */
+        .module-list li::before {
+            content: "\f1c0"; /* Database Icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--adv-accent);
+            font-size: 0.8rem;
+            top: 4px;
+        }
+
+        /* Tags de Fórmulas */
+        .formula {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--formula-bg);
+            color: var(--adv-green);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #c8e6c9;
+            box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--adv-dark);
+            color: #aaa;
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-top: auto;
+            border-top: 5px solid var(--adv-accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .module-item { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-file-excel"></i> 
+                <span>Excel</span> <div class="badge">PRO</div>
+            </div>
+            <a href="../contactame.html?curso=Excel Avanzado" class="cta-button">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Excel <span>Avanzado</span></h1>
+            <p>Deja de operar manualmente. Aprende a automatizar, analizar escenarios complejos y hacer que los datos tomen decisiones por ti.</p>
+            <a href="#temario" class="cta-button" style="background: var(--white); color: var(--adv-green); box-shadow: none;">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>24 Horas</h3>
+                <p>Intensivas</p>
+            </div>
+            <div class="info-card">
+                <h3>Avanzado</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Analítica</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Potenciar el manejo de datos masivos mediante funciones complejas anidadas, herramientas de análisis de hipótesis y automatización básica con Macros para entornos empresariales exigentes.</p>
+                    <br>
+                    <p>En el entorno laboral actual, saber sumar celdas no es suficiente. Este curso está diseñado para convertirte en el "Power User" de tu oficina. Aprenderás a cruzar bases de datos complejas sin errores, a proteger la integridad de tu información y a ahorrar horas de trabajo repetitivo enseñándole a Excel a hacerlo por ti.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item" style="min-height: auto; padding-bottom: 1.5rem;">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;"><i class="fas fa-chart-line" style="color: var(--adv-accent); margin-right: 10px;"></i> Analistas y Contadores</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Que necesitan reportes dinámicos, consolidación de balances y proyecciones financieras precisas.</p>
+                    </div>
+                    <div class="module-item" style="min-height: auto; padding-bottom: 1.5rem;">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;"><i class="fas fa-user-tie" style="color: var(--adv-accent); margin-right: 10px;"></i> Supervisores</h3>
+                        <p style="color: #666; font-size: 0.95rem;">Que requieren cuadros de mando (Dashboards) para la toma de decisiones basada en datos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Funciones Avanzadas">
+                            1. Funciones Avanzadas
+                        </h3>
+                        <ul class="module-list">
+                            <li>Lógica condicional compleja: <span class="formula">SI</span> anidado, <span class="formula">Y</span> / <span class="formula">O</span>.</li>
+                            <li>Búsqueda moderna: <span class="formula">BUSCARX</span> (XLOOKUP) vs. BUSCARV.</li>
+                            <li>Búsqueda matricial: <span class="formula">INDICE</span> + <span class="formula">COINCIDIR</span>.</li>
+                            <li>Manejo de errores en fórmulas con <span class="formula">SI.ERROR</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1614064641938-3bcee529cfc4?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Gestión de Datos">
+                            2. Gestión y Control
+                        </h3>
+                        <ul class="module-list">
+                            <li>Validación de Datos (listas desplegables y reglas).</li>
+                            <li>Protección de hojas, celdas específicas y libros.</li>
+                            <li>Limpieza de datos (texto a columnas, quitar duplicados).</li>
+                            <li>Formato Condicional con fórmulas personalizadas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Análisis de Hipótesis">
+                            3. Análisis de Datos
+                        </h3>
+                        <ul class="module-list">
+                            <li>Herramienta "Buscar Objetivo" (Goal Seek).</li>
+                            <li>Administrador de Escenarios (Best/Worst Case).</li>
+                            <li>Consolidación de datos de múltiples hojas.</li>
+                            <li>Tablas Dinámicas Avanzadas (Campos calculados).</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Macros y Automatización">
+                            4. Introducción a Macros
+                        </h3>
+                        <ul class="module-list">
+                            <li>¿Qué es VBA y cuándo usarlo?</li>
+                            <li>La pestaña Desarrollador.</li>
+                            <li>Uso de la Grabadora de Macros para tareas repetitivas.</li>
+                            <li>Asignación de macros a botones y figuras.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text" style="background: var(--white); border-left: 5px solid var(--adv-green);">
+                    <h3>MSc. Ing. Alejandro Bolívar</h3>
+                    <p>Te enseñará las secciones de Macros y automatización.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Excel - Curso de Excel Avanzado. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Procesando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Inscripción solicitada! Nos pondremos en contacto.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
