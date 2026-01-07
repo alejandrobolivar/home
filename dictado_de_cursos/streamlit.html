@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Desarrollo Web con Streamlit. Convierte scripts de Python en web apps interactivas en minutos. Duración: 12 Horas.">
+    <title>Apps Web con Streamlit | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS STREAMLIT (ROJO Y GRIS) --- */
+        :root {
+            --primary-color: #FF4B4B; /* Rojo Oficial Streamlit */
+            --primary-dark: #cc3030;  /* Rojo Oscuro */
+            --text-color: #262730;    /* Negro Suave (Texto oficial) */
+            --bg-light: #F0F2F6;      /* Fondo Gris Claro (Canvas oficial) */
+            --white: #ffffff;
+            --code-bg: #f5f5f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { color: var(--primary-color); }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px; /* Bordes suaves */
+            font-weight: 600;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 10px rgba(255, 75, 75, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background-color: var(--white);
+            /* Patrón sutil para dar sensación tecnológica */
+            background-image: radial-gradient(var(--bg-light) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            min-width: 200px;
+            border: 1px solid #eee;
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: #777;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin-top: 5px;
+            border-radius: 2px;
+        }
+
+        .content-text {
+            background: var(--bg-light); /* Fondo estilo app de Streamlit */
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: justify;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-item {
+            background: var(--white);
+            padding: 2rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .module-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 8px 8px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        
+        .module-item:hover::before {
+            opacity: 1;
+        }
+
+        .module-item h3 {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .module-item h3 i {
+            color: var(--primary-color);
+        }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 0;
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Estilo de código Streamlit */
+        .st-code {
+            font-family: 'Source Code Pro', monospace;
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #ddd;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-bolt"></i> Streamlit Apps</div>
+            <a href="contactame.html?curso=Desarrollo Web con Streamlit" class="cta-button">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Desarrollo Web con <span>Streamlit</span></h1>
+            <p>La forma más rápida de crear aplicaciones de datos. Convierte tus scripts de Python en web apps interactivas sin tocar HTML, CSS ni JavaScript.</p>
+            <a href="#temario" class="cta-button" style="background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color);">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>12 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Intensivo</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Web App</h3>
+                <p>Resultado</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Aprender a convertir scripts de análisis de datos en aplicaciones web interactivas de manera rápida y eficiente, sin necesidad de conocimientos profundos de Frontend.</p>
+                    <br>
+                    <p>¿Eres científico de datos o analista y quieres compartir tus modelos? Olvídate de aprender Django, Flask, HTML o React. Con <strong>Streamlit</strong>, todo es Python. En este curso aprenderás a crear dashboards, herramientas de IA y reportes interactivos en cuestión de horas, no semanas.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item">
+                        <h3><i class="fas fa-chart-line"></i> Data Scientists</h3>
+                        <p>Para quienes necesitan mostrar sus modelos y gráficas a clientes sin enviar capturas de pantalla estáticas.</p>
+                    </div>
+                    <div class="module-item">
+                        <h3><i class="fas fa-code"></i> Python Devs</h3>
+                        <p>Para programadores que desean prototipar interfaces de usuario (UI) a la velocidad del rayo.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3><i class="fas fa-rocket"></i> 1. Introducción</h3>
+                        <ul class="module-list">
+                            <li>¿Por qué Streamlit? Filosofía y ventajas.</li>
+                            <li>Instalación y estructura: <span class="st-code">pip install streamlit</span>.</li>
+                            <li>El comando mágico: <span class="st-code">st.write()</span>.</li>
+                            <li>Flujo de ejecución y "Hot Reload".</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-sliders-h"></i> 2. Widgets Interactivos</h3>
+                        <ul class="module-list">
+                            <li>Entrada de datos: <span class="st-code">st.text_input</span>.</li>
+                            <li>Controles numéricos: <span class="st-code">st.slider</span>.</li>
+                            <li>Botones y Acciones: <span class="st-code">st.button</span>.</li>
+                            <li>Selección: <span class="st-code">st.selectbox</span>, <span class="st-code">st.multiselect</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-chart-area"></i> 3. Visualización Web</h3>
+                        <ul class="module-list">
+                            <li>Integración nativa con Pandas DataFrames.</li>
+                            <li>Gráficos simples: <span class="st-code">st.line_chart</span>.</li>
+                            <li>Integración con Matplotlib, Plotly y Altair.</li>
+                            <li>Mostrar métricas e indicadores clave (KPIs).</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-cloud-upload-alt"></i> 4. Despliegue</h3>
+                        <ul class="module-list">
+                            <li>Diseño y Layouts: <span class="st-code">st.sidebar</span>, <span class="st-code">st.columns</span>.</li>
+                            <li>Gestión del estado de sesión (Session State).</li>
+                            <li>Configuración del tema (Dark/Light Mode).</li>
+                            <li>Publicación gratis en <strong>Streamlit Cloud</strong>.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text" style="background: white; border: none;">
+                    <h3>MSc. Ing. Alejandro Bolívar</h3>
+                    <p>Desarrollador Full Stack en Python. Te enseñará a pasar de un script "crudo" a una aplicación web profesional lista para compartir en LinkedIn.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de Streamlit. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Enviando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
