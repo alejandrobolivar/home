@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Programación Orientada a Objetos en Python. Aprende Clases, Herencia, Polimorfismo y Manejo de Archivos. Duración: 24 Horas.">
+    <title>Programación Orientada a Objetos en Python | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS PYTHON OOP (AZUL Y AMARILLO) --- */
+        :root {
+            --primary-color: #306998; /* Azul Python Oficial */
+            --primary-dark: #23527c;  /* Azul Oscuro */
+            --accent-color: #FFD43B;  /* Amarillo Python */
+            --text-color: #333333;
+            --text-light: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --code-bg: #f0f0f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { color: var(--accent-color); font-size: 1.8rem; }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: #333; /* Texto oscuro para contraste con amarillo */
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 212, 59, 0.5);
+            background-color: #ffe066;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, #306998 0%, #23527c 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            /* Elemento decorativo sutil */
+            content: "{ }";
+            position: absolute;
+            font-family: 'Fira Code', monospace;
+            font-size: 15rem;
+            color: rgba(255,255,255,0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 750px;
+            margin: 0 auto 2rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+        
+        .hero .cta-button {
+            background-color: var(--accent-color);
+            color: #333;
+            border: none;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            min-width: 200px;
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: #777;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin-top: 5px;
+            border-radius: 2px;
+        }
+
+        .content-text {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            text-align: justify;
+        }
+
+        /* Grid de Aplicaciones */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .app-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .app-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .app-card h4 {
+            color: #444;
+            font-size: 1rem;
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Más ancho para código */
+            gap: 1.5rem;
+        }
+
+        .module-item {
+            background: var(--white);
+            padding: 2rem;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--accent-color);
+        }
+
+        .module-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.6rem;
+            padding-left: 0;
+            font-size: 0.95rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Icono bullet */
+        .module-list li::before {
+            content: "🔹";
+            font-size: 0.7rem;
+            color: var(--primary-color);
+        }
+
+        /* Estilo de código inline */
+        .code-pill {
+            background-color: var(--code-bg);
+            color: #d63384; /* Rosa estilo editor */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .code-pill.blue { color: var(--primary-color); }
+
+        /* Footer */
+        footer {
+            background: #2d2d2d;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fab fa-python"></i> Python OOP</div>
+            <a href="contactame.html?curso=Programacion Orientada a Objetos Python" class="cta-button">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Programación Orientada a Objetos y Archivos</h1>
+            <p>Deja de escribir código "espagueti". Domina el paradigma que utilizan los ingenieros de software profesionales para crear aplicaciones robustas, escalables y organizadas.</p>
+            <a href="#temario" class="cta-button">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>24 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Intermedio</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Ingeniería</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Desarrollar competencias cognitivas que le permitan a los participantes conocer los fundamentos básicos de la programación en Python, su funcionamiento, así como lógica de programación y las mejores prácticas de diseño de software.</p>
+                    <br>
+                    <p>La Programación Orientada a Objetos (POO) es el estándar de la industria. Te permite modelar problemas de la vida real dentro de tu código, haciéndolo reutilizable y fácil de mantener. Al finalizar, serás capaz de estructurar sistemas complejos, desde una facturación electrónica hasta backends web.</p>
+                </div>
+            </section>
+
+            <section id="aplicacion">
+                <h2>Área de Aplicación</h2>
+                <p style="margin-bottom: 1.5rem; color: #555;">Lo aprendido en esta capacitación es la base para desarrollar sistemas en grandes empresas, permitiendo implementaciones rápidas y completas como:</p>
+                
+                <div class="apps-grid">
+                    <div class="app-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h4>Sistemas de Compras</h4>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-boxes"></i>
+                        <h4>Control de Inventarios</h4>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <h4>Facturación Electrónica</h4>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-users-cog"></i>
+                        <h4>Permisos de Usuarios</h4>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-desktop"></i>
+                        <h4>Interfaces Gráficas</h4>
+                    </div>
+                    <div class="app-card">
+                        <i class="fas fa-globe"></i>
+                        <h4>Aplicaciones Web</h4>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3>Unidad 1: Clases y Estructura</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #777;">El plano de construcción.</p>
+                        <ul class="module-list">
+                            <li>Definición de una <span class="code-pill blue">class</span>.</li>
+                            <li>Atributos (datos) y Métodos (acciones).</li>
+                            <li>El parámetro implícito <span class="code-pill">self</span>.</li>
+                            <li>El constructor <span class="code-pill">__init__</span>.</li>
+                            <li>Métodos de clase (<span class="code-pill">@classmethod</span>) y estáticos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>Unidad 2: Objetos</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #777;">Dando vida al código.</p>
+                        <ul class="module-list">
+                            <li>Declaración e instanciación.</li>
+                            <li>Acceso a campos y modificación de estado.</li>
+                            <li>Copiado de objetos (superficial vs profundo).</li>
+                            <li>Estado y ciclo de vida de una clase.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>Unidad 3: Herencia</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #777;">Reutilización y jerarquía.</p>
+                        <ul class="module-list">
+                            <li>Clase Base (Padre) y Subclase (Hijo).</li>
+                            <li>Herencia Simple y Múltiple.</li>
+                            <li>Uso de <span class="code-pill blue">super()</span> para extender funcionalidad.</li>
+                            <li>Diseño de Jerarquías de clases eficientes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>Unidad 4: Polimorfismo</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #777;">Flexibilidad y encapsulamiento.</p>
+                        <ul class="module-list">
+                            <li>Concepto de Polimorfismo.</li>
+                            <li>Propiedades: <span class="code-pill">@property</span>, getters y setters.</li>
+                            <li>Decoradores para modificar comportamiento.</li>
+                            <li>Sobrecarga de métodos (simulada en Python).</li>
+                        </ul>
+                    </div>
+
+                     <div class="module-item" style="border-left-color: #444;">
+                        <h3>Unidad 5: Persistencia</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; color: #777;">Guardando la información.</p>
+                        <ul class="module-list">
+                            <li>Manejo de archivos de texto (.txt).</li>
+                            <li>Modos de apertura: <span class="code-pill">r</span>, <span class="code-pill">w</span>, <span class="code-pill">a</span>.</li>
+                            <li>Context Managers (<span class="code-pill blue">with open...</span>).</li>
+                            <li>Lectura y escritura segura de datos.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text">
+                    <h3>MSc. Ing. Alejandro Bolívar</h3>
+                    <p>Arquitecto de Software. Te enseñará a pensar como un programador senior, priorizando la legibilidad, la eficiencia y el diseño modular.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de POO Python. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Enviando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
