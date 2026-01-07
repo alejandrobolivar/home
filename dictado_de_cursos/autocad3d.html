@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de AutoCAD 3D. Aprende Modelado de Sólidos, Operaciones Booleanas, Renderizado y visualización tridimensional. Duración: 32 Horas.">
+    <title>AutoCAD 3D | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS AUTOCAD 3D (DARK + Z-AXIS BLUE) --- */
+        :root {
+            --cad-red: #E01E26;      /* Rojo Autodesk (Marca) */
+            --cad-bg: #121212;       /* Fondo Profundo */
+            --cad-panel: #1e1e1e;    /* Paneles */
+            --cad-text: #e0e0e0;     /* Texto */
+            --cad-blue: #2F80ED;     /* Azul Eje Z (Acento Principal) */
+            --cad-blue-glow: rgba(47, 128, 237, 0.4);
+            --cad-grid: rgba(255,255,255,0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--cad-text);
+            background-color: #0a0a0a;
+            perspective: 1000px; /* Perspectiva global para efectos 3D */
+        }
+
+        /* Header */
+        header {
+            background: var(--cad-panel);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--cad-blue);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span { color: var(--cad-red); }
+        .logo .badge { 
+            background: var(--cad-blue); 
+            color: white; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            font-size: 0.8rem;
+            margin-left: 5px;
+            box-shadow: 0 0 10px var(--cad-blue-glow);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--cad-blue) 0%, #1c5db5 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--cad-blue-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem;
+            background-color: var(--cad-bg);
+            /* Grid Isométrico Simulado */
+            background-image: 
+                linear-gradient(30deg, var(--cad-grid) 1px, transparent 1px),
+                linear-gradient(150deg, var(--cad-grid) 1px, transparent 1px);
+            background-size: 40px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Simulación del Gizmo 3D (Ejes X, Y, Z) */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(47,128,237,0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: var(--cad-blue);
+            display: inline-block;
+            transform: skewX(-10deg); /* Efecto dinámico */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #aaa;
+            position: relative;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            background: var(--cad-panel);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            min-width: 200px;
+            border-bottom: 4px solid var(--cad-blue);
+            backdrop-filter: blur(5px);
+        }
+
+        .info-card h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 500;
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 5rem; }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--cad-blue);
+            margin-top: 10px;
+            box-shadow: 0 0 10px var(--cad-blue-glow);
+        }
+
+        .content-text {
+            background: var(--cad-panel);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            color: #ccc;
+            text-align: justify;
+            position: relative;
+        }
+        
+        /* Decoración de cubo en el texto */
+        .content-text::before {
+            content: '\f1b2'; /* Icono de Cubo FontAwesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            color: var(--cad-blue);
+            opacity: 0.1;
+        }
+
+        /* Grid de Temario - EFECTO 3D EN CARDS */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .module-item {
+            background: var(--cad-panel);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d; /* Clave para el efecto 3D */
+        }
+
+        .module-item:hover {
+            transform: translateY(-10px) rotateX(2deg); /* Elevación 3D */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border-color: var(--cad-blue);
+        }
+
+        .module-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--cad-blue);
+            opacity: 0.5;
+        }
+        
+        .module-item:hover::before {
+            opacity: 1;
+            box-shadow: 0 0 15px var(--cad-blue);
+        }
+
+        .module-item h3 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .module-item h3 i { 
+            color: var(--cad-blue); 
+            background: rgba(47, 128, 237, 0.1);
+            padding: 10px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 1rem;
+            padding-left: 0;
+            font-size: 0.95rem;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Tags de Comandos 3D */
+        .cmd-tag {
+            font-family: 'Roboto Mono', monospace;
+            background: #111;
+            color: var(--cad-blue);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(47, 128, 237, 0.3);
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            color: #666;
+            text-align: center;
+            padding: 3rem;
+            margin-top: auto;
+            border-top: 1px solid #222;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+            .module-item:hover { transform: translateY(-5px); } /* Menos efecto en móvil */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-cube"></i> 
+                <span>Auto</span>CAD <div class="badge">3D</div>
+            </div>
+            <a href="contactame.html?curso=AutoCAD 3D Avanzado" class="cta-button">Inscribirme</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>AutoCAD <span>3D</span></h1>
+            <p>Rompe el plano 2D. Domina el eje Z y materializa tus ideas. Desde piezas mecánicas complejas hasta volumetría arquitectónica profesional.</p>
+            <a href="#temario" class="cta-button" style="background: transparent; border: 1px solid var(--cad-blue); box-shadow: none;">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>32 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Avanzado</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Modelado</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Desarrollar habilidades avanzadas para el modelado tridimensional, permitiendo visualizar objetos, piezas mecánicas o arquitectónicas en el espacio con realismo y precisión.</p>
+                    <br>
+                    <p>El mundo no es plano, y tus diseños tampoco deberían serlo. En este curso darás el salto definitivo del dibujo técnico a la <strong>construcción virtual</strong>. Aprenderás a pensar en volúmenes, a esculpir sólidos mediante operaciones booleanas y a aplicar materiales y luces para generar renders que vendan tus proyectos antes de que existan.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item" style="min-height: auto;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;"><i class="fas fa-cogs" style="width: 35px; height: 35px; font-size: 1rem;"></i> Ing. Mecánicos</h3>
+                        <p style="padding: 0 1rem 1rem; color: #999; font-size: 0.9rem;">Para el diseño de prototipos, piezas de maquinaria y ensamblajes.</p>
+                    </div>
+                    <div class="module-item" style="min-height: auto;">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;"><i class="fas fa-building" style="width: 35px; height: 35px; font-size: 1rem;"></i> Arquitectos</h3>
+                        <p style="padding: 0 1rem 1rem; color: #999; font-size: 0.9rem;">Para levantar maquetas virtuales y estudios de volumetría 3D.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3><i class="fas fa-globe"></i> 1. Entorno 3D</h3>
+                        <ul class="module-list">
+                            <li>El eje Z y el sistema de coordenadas UCS.</li>
+                            <li>Navegación con ViewCube y Orbit <span class="cmd-tag">3DORBIT</span>.</li>
+                            <li>Estilos visuales: Estructura alámbrica vs. Conceptual.</li>
+                            <li>Vistas isométricas y perspectivas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-shapes"></i> 2. Modelado de Sólidos</h3>
+                        <ul class="module-list">
+                            <li>Creación de primitivas: Prisma, Cilindro, Esfera.</li>
+                            <li>Extrusión de perfiles 2D <span class="cmd-tag">EXTRUDE</span>.</li>
+                            <li>Revolución para piezas cilíndricas <span class="cmd-tag">REVOLVE</span>.</li>
+                            <li>Barrido <span class="cmd-tag">SWEEP</span> y Solevar <span class="cmd-tag">LOFT</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-tools"></i> 3. Edición de Sólidos</h3>
+                        <ul class="module-list">
+                            <li>Operaciones Booleanas: Unión <span class="cmd-tag">UNION</span>.</li>
+                            <li>Diferencia (restar volúmenes) <span class="cmd-tag">SUBTRACT</span>.</li>
+                            <li>Intersección de sólidos.</li>
+                            <li>Edición de caras y aristas (Empalme 3D).</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-camera-retro"></i> 4. Visualización</h3>
+                        <ul class="module-list">
+                            <li>Explorador de Materiales <span class="cmd-tag">MAT</span>.</li>
+                            <li>Mapeado de texturas sobre objetos.</li>
+                            <li>Iluminación básica: Sol y luces puntuales.</li>
+                            <li>Renderizado final e imagen realista <span class="cmd-tag">RENDER</span>.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text" style="background: var(--cad-panel); border: none; border-left: 4px solid var(--cad-blue);">
+                    <h3>Arq. Alejandro Bolívar</h3>
+                    <p>Experto en Modelado 3D y Renderizado. Te enseñará a pensar en tres dimensiones y a usar AutoCAD no solo para dibujar planos, sino para construir realidades virtuales.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de AutoCAD 3D. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Procesando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
