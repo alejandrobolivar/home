@@ -1,1 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Programación Orientada a Objetos (POO) con Python. Domina Clases, Herencia, Encapsulamiento y Abstracción. Duración: 24 Horas.">
+    <title>POO con Python | Curso Profesional de Arquitectura de Software</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS PYTHON POO (AZUL Y DORADO) --- */
+        :root {
+            --primary-color: #306998; /* Azul Python Oscuro */
+            --primary-light: #4B8BBE; /* Azul Python Claro */
+            --accent-color: #FFD43B;  /* Amarillo/Dorado Python */
+            --text-dark: #333333;
+            --text-light: #f0f0f0;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --code-bg: #eeeeee;       /* Fondo para snippets de código */
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .logo i { color: var(--accent-color); font-size: 1.8rem; }
+        .logo span { color: var(--text-dark); font-weight: 400;}
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            box-shadow: 0 4px 6px rgba(255, 212, 59, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 212, 59, 0.5);
+            background-color: #ffe066;
+        }
+
+        /* Hero Section con patrón de plano/blueprint */
+        .hero {
+            text-align: center;
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Patrón de fondo sutil de cuadrícula/blueprint */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .hero h1 span { color: var(--accent-color); }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+            color: rgba(255,255,255,0.95);
+            position: relative;
+            font-weight: 300;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            text-align: center;
+            min-width: 200px;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: #777;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 5rem; }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+
+        .content-text {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            text-align: justify;
+            border-left: 5px solid var(--primary-light);
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Un poco más ancho para las imágenes */
+            gap: 2rem;
+        }
+
+        .module-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Barra superior de color */
+        .module-item::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+        }
+
+        .module-item:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(48, 105, 152, 0.15);
+        }
+
+        /* --- ESTILOS PARA LA IMAGEN CIRCULAR EN EL TÍTULO --- */
+        .module-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center; /* Centra verticalmente texto e imagen */
+            font-weight: 700;
+        }
+
+        .module-item h3 img {
+            width: 70px;           /* Tamaño del círculo */
+            height: 70px;
+            object-fit: cover;     /* Evita deformaciones */
+            border-radius: 50%;    /* Círculo perfecto */
+            margin-right: 15px;
+            border: 3px solid var(--accent-color); /* Borde dorado temático */
+            padding: 2px;          /* Espacio entre imagen y borde */
+            background: var(--white);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .module-item:hover h3 img {
+            transform: scale(1.08) rotate(5deg); /* Pequeño efecto al pasar el mouse */
+        }
+        /* -------------------------------------------------- */
+
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        /* Bullet points personalizados */
+        .module-list li::before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            top: 4px;
+        }
+
+        /* Estilo de código inline (Fira Code) */
+        .code {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--code-bg);
+            color: #d63384; /* Color de énfasis para código */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #ddd;
+        }
+        .code.blue { color: var(--primary-color); }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem;
+            margin-top: auto;
+            border-top: 5px solid var(--accent-color);
+        }
+        
+        footer p { opacity: 0.9; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .course-info { gap: 1rem; margin-top: -2rem;}
+            .modules-grid { grid-template-columns: 1fr; }
+            .module-item { padding: 1.5rem; }
+            .module-item h3 img { width: 60px; height: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fab fa-python"></i> 
+                Python <span>POO</span>
+            </div>
+            <a href="../contactame.html?curso=POO con Python" class="cta-button">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Programación Orientada a Objetos con <span>Python</span></h1>
+            <p>Deja de escribir scripts. Empieza a construir software. Domina el paradigma estándar de la industria para crear aplicaciones robustas, escalables y mantenibles.</p>
+            <a href="#temario" class="cta-button" style="background: var(--white); color: var(--primary-color);">Ver Temario Completo</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>24 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Intermedio</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Arquitectura</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Comprender e implementar el paradigma de Programación Orientada a Objetos (POO) para modelar problemas de la vida real mediante clases y objetos, estándar en la industria del software.</p>
+                    <br>
+                    <p>Python es fácil de empezar, pero difícil de dominar si no entiendes la POO. Este curso es el puente entre escribir código "espagueti" y desarrollar sistemas profesionales. Aprenderás a pensar en términos de componentes reutilizables, a proteger tus datos y a diseñar jerarquías lógicas que harán tu código más limpio y eficiente.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item" style="padding-bottom: 1rem;">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;"><i class="fas fa-code" style="color: var(--accent-color); margin-right: 10px;"></i> Desarrolladores Junior</h3>
+                        <p style="color: #666;">Que ya conocen la sintaxis básica de Python y quieren dar el salto a la ingeniería de software profesional.</p>
+                    </div>
+                    <div class="module-item" style="padding-bottom: 1rem;">
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;"><i class="fas fa-database" style="color: var(--accent-color); margin-right: 10px;"></i> Data Scientists</h3>
+                        <p style="color: #666;">Que necesitan estructurar sus modelos de ML y pipelines de datos para producción.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Clases y Objetos Blueprint">
+                            1. Clases y Objetos
+                        </h3>
+                        <ul class="module-list">
+                            <li>El "molde" y la "instancia".</li>
+                            <li>Definición de Clases: <span class="code blue">class MiClase:</span></li>
+                            <li>El constructor <span class="code">__init__</span> y el parámetro <span class="code">self</span>.</li>
+                            <li>Atributos de instancia vs. de clase.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Encapsulamiento Seguridad">
+                            2. Encapsulamiento
+                        </h3>
+                        <ul class="module-list">
+                            <li>Proteger los datos internos.</li>
+                            <li>Convenciones de privacidad: <span class="code">_privado</span> y <span class="code">__muy_privado</span>.</li>
+                            <li>Getters y Setters "pythonicos".</li>
+                            <li>Uso del decorador <span class="code blue">@property</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Herencia Estructura">
+                            3. Herencia y Polimorfismo
+                        </h3>
+                        <ul class="module-list">
+                            <li>Reutilización de código (DRY).</li>
+                            <li>Clases Padre e Hijo: <span class="code blue">class Hijo(Padre):</span></li>
+                            <li>Uso de <span class="code">super()</span>.</li>
+                            <li>Polimorfismo: Mismos métodos, diferentes comportamientos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>
+                            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Abstracción e Interfaces">
+                            4. Abstracción y Diseño
+                        </h3>
+                        <ul class="module-list">
+                            <li>Ocultar la complejidad.</li>
+                            <li>Clases Abstractas con el módulo <span class="code blue">abc</span>.</li>
+                            <li>Métodos abstractos <span class="code">@abstractmethod</span>.</li>
+                            <li>Introducción a patrones de diseño básicos.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text" style="background: #fff; border-left: 5px solid var(--accent-color);">
+                    <h3>MSc. Ing. Alejandro Bolívar</h3>
+                    <p>Arquitecto de Software y Pythonista. Te enseñará a diseñar sistemas que no solo funcionen hoy, sino que sean fáciles de entender y modificar mañana.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de POO con Python. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Enviando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
