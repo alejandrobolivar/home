@@ -10142,6 +10142,31 @@ section.resume-section .resume-section-content {
         font-size: 1.5rem;
     }
 
+    /* Contenedor para centrar y dar margen a la imagen */
+.course-icon-img {
+    margin-bottom: 1.5rem; /* Espacio debajo de la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para la imagen del curso */
+.course-icon-img img {
+    width: 120px;          /* Ancho del círculo */
+    height: 120px;         /* Alto del círculo (DEBE ser igual al ancho) */
+    border-radius: 50%;    /* Esto convierte la imagen cuadrada en un CÍRCULO */
+    object-fit: cover;     /* IMPORTANTE: Evita que la imagen se aplaste si no es cuadrada */
+    
+    /* Opcional: añade un borde bonito */
+    border: 4px solid #f0f2f5; /* Un borde gris claro suave */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra suave para darle profundidad */
+    transition: transform 0.3s ease;
+}
+
+/* Opcional: Efecto al pasar el mouse por encima */
+.course-icon-img img:hover {
+    transform: scale(1.05); /* La imagen crece un poquito */
+}
     .course-title {
         font-family: 'Saira Extra Condensed', sans-serif;
         font-weight: 700;
