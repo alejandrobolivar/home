@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de Visualización de Datos con Matplotlib. Crea gráficos profesionales, dashboards estáticos y visualizaciones científicas en Python. Duración: 16 Horas.">
+    <title>Visualización de Datos con MatPlotLib | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS MATPLOTLIB (TAB10 PALETTE) --- */
+        :root {
+            --primary-color: #11557c; /* Azul Profundo Matplotlib */
+            --accent-color: #ff7f0e;  /* Naranja Clásico de Gráficos */
+            --green-color: #2ca02c;   /* Verde para detalles */
+            --text-color: #333;
+            --bg-light: #fcfcfc;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: #0d3d59;
+            box-shadow: 0 4px 10px rgba(17, 85, 124, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            /* Fondo sutil de cuadrícula para evocar un gráfico */
+            background-color: #ffffff;
+            background-image: radial-gradient(#11557c 0.5px, transparent 0.5px), radial-gradient(#11557c 0.5px, #ffffff 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-blend-mode: overlay;
+            opacity: 1;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+            background-color: rgba(255,255,255,0.9); /* Para legibilidad sobre la cuadrícula */
+            display: inline-block;
+            padding: 0 10px;
+            border-radius: 5px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+            color: #555;
+            background-color: rgba(255,255,255,0.9);
+            padding: 5px;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            min-width: 200px;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 600;
+            color: #777;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin-top: 5px;
+            border-radius: 2px;
+        }
+
+        .content-text {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            text-align: justify;
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--accent-color);
+        }
+
+        .module-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.6rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Bullet Points personalizados como iconos de gráfica */
+        .module-list li::before {
+            content: "📊"; 
+            font-size: 0.8rem;
+            position: absolute;
+            left: 0;
+            top: 3px;
+        }
+
+        /* Código inline */
+        .code-tag {
+            font-family: 'Fira Code', monospace;
+            background: #eee;
+            color: #d63384;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-chart-area"></i> MatPlotLib Viz</div>
+            <a href="contactame.html?curso=Visualizacion con MatPlotLib" class="cta-button">Inscribirme Ahora</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Visualización de Datos con MatPlotLib</h1>
+            <p>Convierte números fríos en historias visuales impactantes. Domina la librería fundamental de gráficos en Python para análisis científico y de negocios.</p>
+            <a href="#temario" class="cta-button" style="background: var(--white); color: var(--primary-color); border: 2px solid var(--primary-color);">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>16 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Práctico</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Storytelling</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo del Curso</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Crear representaciones gráficas profesionales (estáticas e interactivas) utilizando Python para comunicar hallazgos en los datos de manera efectiva.</p>
+                    <br>
+                    <p>Una imagen vale más que mil filas de Excel. En este curso aprenderás a usar <strong>Matplotlib</strong> no solo para generar gráficos, sino para personalizarlos al nivel de calidad de publicación. Entenderás la estructura "Figure" y "Axes" para tener control total sobre cada píxel de tu visualización, permitiéndote contar la historia oculta detrás de tus datos.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item" style="border-top-color: var(--green-color);">
+                        <h3><i class="fas fa-search"></i> Investigadores</h3>
+                        <p>Para científicos que necesitan gráficos de alta resolución y precisión para *papers* o tesis.</p>
+                    </div>
+                    <div class="module-item" style="border-top-color: var(--accent-color);">
+                        <h3><i class="fas fa-briefcase"></i> Analistas de Negocio</h3>
+                        <p>Para quienes necesitan presentar reportes claros, con colores corporativos y etiquetas precisas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3>1. Fundamentos de Pyplot</h3>
+                        <ul class="module-list">
+                            <li>Anatomía de una figura en Matplotlib.</li>
+                            <li>Gráficos de Líneas (<span class="code-tag">plot</span>) y Barras (<span class="code-tag">bar</span>).</li>
+                            <li>Gráficos de Dispersión (<span class="code-tag">scatter</span>) para correlaciones.</li>
+                            <li>Histogramas y distribución de datos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>2. Personalización Total</h3>
+                        <ul class="module-list">
+                            <li>Control de Colores (Mapas de color y Paletas).</li>
+                            <li>Estilos de línea, marcadores y grosores.</li>
+                            <li>Títulos, Etiquetas de Ejes y Leyendas inteligentes.</li>
+                            <li>Uso de estilos predefinidos (Seaborn, ggplot).</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>3. Gráficos Complejos</h3>
+                        <ul class="module-list">
+                            <li>Creación de Subplots (<span class="code-tag">fig, ax</span>).</li>
+                            <li>Manejo de Ejes Múltiples (Twin Axes).</li>
+                            <li>Gráficos Estadísticos (Boxplots, Violines).</li>
+                            <li>Layouts ajustados y control de dimensiones.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3>4. Visualización Avanzada</h3>
+                        <ul class="module-list">
+                            <li>Mapas de Calor (Heatmaps) para matrices.</li>
+                            <li>Anotaciones de texto y flechas en el gráfico.</li>
+                            <li>Guardado de figuras en alta calidad (DPI, PNG, PDF).</li>
+                            <li>Introducción a la interactividad básica.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text">
+                    <h3>MSc. Ing. Alejandro Bolívar</h3>
+                    <p>Experto en Data Storytelling. Te enseñará a elegir el gráfico correcto para cada tipo de dato y a diseñarlo para que se explique por sí solo.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de Visualización de Datos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Enviando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
