@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curso de AutoCAD 2D Básico. Domina el dibujo técnico digital, coordenadas y planos precisos. Duración: 24 Horas.">
+    <title>AutoCAD 2D Básico | Curso Profesional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ESTILOS PERSONALIZADOS AUTOCAD (DARK INTERFACE) --- */
+        :root {
+            --cad-red: #E01E26;      /* Rojo Marca */
+            --cad-bg: #1e1e1e;       /* Fondo Oscuro (Model Space) */
+            --cad-panel: #2b2b2b;    /* Fondo Paneles */
+            --cad-text: #e0e0e0;     /* Texto Claro */
+            --cad-cyan: #00ffff;     /* Cian Típico de Capas */
+            --cad-grid: rgba(255,255,255,0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--cad-text);
+            background-color: #121212;
+        }
+
+        /* Header */
+        header {
+            background: var(--cad-panel);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--cad-red);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span { color: var(--cad-red); }
+
+        .cta-button {
+            background-color: var(--cad-red);
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            text-decoration: none;
+            border-radius: 2px; /* Bordes rectos estilo CAD */
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background-color: #b01219;
+            box-shadow: 0 0 15px rgba(224, 30, 38, 0.4);
+        }
+
+        /* Hero Section (Simulation of Model Space) */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background-color: var(--cad-bg);
+            /* Patrón de Retícula (Grid) */
+            background-image: 
+                linear-gradient(var(--cad-grid) 1px, transparent 1px), 
+                linear-gradient(90deg, var(--cad-grid) 1px, transparent 1px);
+            background-size: 40px 40px;
+            position: relative;
+        }
+
+        /* Ejes de Coordenadas decorativos */
+        .hero::after {
+            content: "Y ▲  X ►";
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-family: 'Roboto Mono', monospace;
+            color: var(--cad-cyan);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #aaa;
+        }
+
+        /* Stats Section */
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-card {
+            background: var(--cad-panel);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            min-width: 200px;
+            border-top: 3px solid var(--cad-cyan);
+        }
+
+        .info-card h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-card p {
+            font-weight: 500;
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 4rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: #fff;
+            border-bottom: 1px solid #444;
+        }
+
+        h2::before {
+            content: 'Command: ';
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            color: #888;
+            margin-right: 10px;
+        }
+
+        .content-text {
+            background: var(--cad-panel);
+            padding: 2rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--cad-red);
+            color: #ccc;
+        }
+
+        /* Grid de Temario */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-item {
+            background: var(--cad-panel);
+            padding: 2rem;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .module-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--cad-cyan);
+        }
+
+        .module-item h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-list { list-style: none; }
+
+        .module-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 0;
+            font-size: 0.95rem;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Estilo de "Comando" */
+        .cmd-tag {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #111;
+            color: var(--cad-cyan);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            border: 1px solid #444;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #777;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            border-top: 1px solid #333;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .course-info { gap: 1rem; }
+            .modules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><i class="fas fa-drafting-compass"></i><span>Auto</span>CAD Training</div>
+            <a href="contactame.html?curso=AutoCAD 2D Basico" class="cta-button">Inscribirme</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>AutoCAD 2D Básico</h1>
+            <p>Del boceto a la precisión digital. Aprende a crear planos técnicos profesionales con el estándar mundial en diseño asistido por computadora.</p>
+            <a href="#temario" class="cta-button" style="background: transparent; border: 1px solid #fff;">Ver Temario</a>
+        </section>
+
+        <div class="course-info">
+            <div class="info-card">
+                <h3>24 Horas</h3>
+                <p>Duración</p>
+            </div>
+            <div class="info-card">
+                <h3>Fundamental</h3>
+                <p>Nivel</p>
+            </div>
+            <div class="info-card">
+                <h3>Dibujo Técnico</h3>
+                <p>Enfoque</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="descripcion">
+                <h2>Objetivo</h2>
+                <div class="content-text">
+                    <p><strong>Objetivo General:</strong> Conocer el entorno de AutoCAD y dominar las herramientas de dibujo y edición necesarias para crear planos técnicos precisos en dos dimensiones.</p>
+                    <br>
+                    <p>AutoCAD reemplazó a las mesas de dibujo, pero los principios son los mismos: precisión y claridad. En este curso perderás el miedo a la "pantalla negra". Entenderás la lógica de coordenadas cartesianas y polares, y aprenderás a organizar tus proyectos mediante capas para imprimir planos listos para obra o fabricación.</p>
+                </div>
+            </section>
+
+            <section id="perfiles">
+                <h2>¿Para quién es este curso?</h2>
+                <div class="modules-grid">
+                    <div class="module-item">
+                        <h3><i class="fas fa-hard-hat"></i> Ing. y Arquitectos</h3>
+                        <p>Profesionales o estudiantes que necesitan plasmar sus diseños estructurales y arquitectónicos con normativa.</p>
+                    </div>
+                    <div class="module-item">
+                        <h3><i class="fas fa-cogs"></i> Diseñadores Industriales</h3>
+                        <p>Para quienes requieren dibujar piezas mecánicas, diagramas y esquemas de montaje con exactitud milimétrica.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="temario">
+                <h2>Contenido Programático</h2>
+                <div class="modules-grid">
+                    
+                    <div class="module-item">
+                        <h3><i class="fas fa-arrows-alt"></i> 1. Interfaz y Coordenadas</h3>
+                        <ul class="module-list">
+                            <li>Configuración del espacio de trabajo (Workspace).</li>
+                            <li>Uso del ratón y teclado (Línea de comandos).</li>
+                            <li>Coordenadas Absolutas (X,Y).</li>
+                            <li>Coordenadas Relativas y Polares <span class="cmd-tag">@dist&lt;ángulo</span>.</li>
+                            <li>Herramientas de precisión: <span class="cmd-tag">OSNAP</span>, <span class="cmd-tag">ORTHO</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-pencil-ruler"></i> 2. Herramientas de Dibujo</h3>
+                        <ul class="module-list">
+                            <li>Líneas simples vs Polilíneas <span class="cmd-tag">PLINE</span>.</li>
+                            <li>Círculos, Arcos y Elipses.</li>
+                            <li>Rectángulos y Polígonos regulares.</li>
+                            <li>Introducción a los bloques básicos.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-cut"></i> 3. Modificación</h3>
+                        <ul class="module-list">
+                            <li>Mover <span class="cmd-tag">MOVE</span> y Copiar <span class="cmd-tag">COPY</span>.</li>
+                            <li>Recortar <span class="cmd-tag">TRIM</span> y Alargar <span class="cmd-tag">EXTEND</span>.</li>
+                            <li>Empalmes <span class="cmd-tag">FILLET</span> y Chaflanes.</li>
+                            <li>Escalar, Rotar y Desfase <span class="cmd-tag">OFFSET</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-item">
+                        <h3><i class="fas fa-layer-group"></i> 4. Organización</h3>
+                        <ul class="module-list">
+                            <li>Gestión de Capas <span class="cmd-tag">LAYERS</span> (Color, Grosor, Tipo).</li>
+                            <li>Propiedades de objeto.</li>
+                            <li>Sombreados y patrones <span class="cmd-tag">HATCH</span>.</li>
+                            <li>Textos básicos y Acotado simple.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="instructor">
+                <h2>Instructor</h2>
+                <div class="content-text" style="background: var(--cad-panel); border: none;">
+                    <h3>Arq. Alejandro Bolívar</h3>
+                    <p>Especialista en CAD/BIM. Te enseñará no solo los comandos, sino el flujo de trabajo eficiente para que dibujes rápido y sin errores.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Academia Bolívar - Curso de AutoCAD. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxO97u4vK-wbb_fSX5Dt6GJhHd1AcGkhuLAqfD3xHYmPgpglLLQuysmdxv37-lAsbfS/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    if(form){
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const btn = form.querySelector('button');
+          const originalText = btn.innerText;
+          btn.innerText = "Procesando...";
+          btn.disabled = true;
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("¡Solicitud enviada! Nos pondremos en contacto contigo.");
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(error => {
+                alert("Error de conexión. Contáctanos vía WhatsApp.");
+                console.error('Error!', error.message);
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+        });
+    }
+    </script>
+</body>
+</html>
