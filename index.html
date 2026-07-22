@@ -7,8 +7,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="MSc. Ing. Alejandro Bolívar - Docente especializado en cursos de computación, programación Python, Data Science y desarrollo de aplicaciones de ingeniería." />
         <meta name="author" content="MSc. Ing. Alejandro Bolívar" />
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://alejandrobolivar.github.io/" />
+        <meta property="og:title" content="Resume - MSc. Ing. Alejandro Bolívar" />
+        <meta property="og:description" content="Docente especializado en cursos de computación, programación Python, Data Science y desarrollo de aplicaciones de ingeniería." />
+        <meta property="og:image" content="assets/img/perfil_cursos.jpg" />
+        
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://alejandrobolivar.github.io/" />
+        <meta name="twitter:title" content="Resume - MSc. Ing. Alejandro Bolívar" />
+        <meta name="twitter:description" content="Docente especializado en cursos de computación, programación Python, Data Science y desarrollo de aplicaciones de ingeniería." />
+        <meta name="twitter:image" content="assets/img/perfil_cursos.jpg" />
+        
         <title>Resume - MSc. Ing. Alejandro Bolívar</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        
+        <!-- Preconnect for performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://use.fontawesome.com" />
+        
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -16,16 +37,48 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        
+        <!-- Schema.org markup for Person -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "MSc. Ing. Alejandro Bolívar",
+            "url": "https://alejandrobolivar.github.io/",
+            "image": "assets/img/perfil_cursos.jpg",
+            "sameAs": [
+                "https://www.linkedin.com/in/alejandro-esteban-bol%C3%ADvar-pereira-5bb043ab/",
+                "https://github.com/alejandrobolivar/",
+                "https://twitter.com/cursosbit",
+                "https://www.facebook.com/cursos.bit/"
+            ],
+            "jobTitle": "Docente de Computación y Programación",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Universidad de Carabobo"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Naguanagua",
+                "addressRegion": "Carabobo",
+                "addressCountry": "Venezuela"
+            },
+            "email": "mailto:bolivara@gmail.com",
+            "telephone": "+58-412-7422856"
+        }
+        </script>
     </head>
     
     <body id="page-top">
+        <!-- Skip link for accessibility -->
+        <a href="#main-content" class="skip-link sr-only">Saltar al contenido principal</a>
+        
         <!-- Navigation-->
-
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" role="navigation" aria-label="Main navigation">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none" style="color: white; font-weight: bold;">Alejandro Bolívar</span>
                 <span class="d-none d-lg-block">
-                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/perfil_cursos.jpg" alt="Foto de perfil" loading="lazy" />
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/perfil_cursos.jpg" alt="Foto de perfil" loading="lazy" decoding="async" />
                     <div class="profile-name">MSc. Ing.<br>Alejandro Bolívar</div>
                 </span>
             </a>
@@ -51,7 +104,7 @@
         </nav>
         
         <!-- Page Content-->
-        <div class="container-fluid p-0">
+        <div class="container-fluid p-0" id="main-content">
             <!-- About-->
             <section class="resume-section" id="about" role="region" aria-labelledby="heading-about">
                 <div class="resume-section-content">
@@ -87,13 +140,13 @@
                     <h2 class="mb-4" id="heading-offercourses">Dictado de Cursos</h2>
                     <p class="mb-4">Formación especializada por áreas de conocimiento.</p>
 
-                    <div class="filter-button-group mb-5">
-                        <button class="btn btn-outline-primary active" data-filter="all">Todos</button>
-                        <button class="btn btn-outline-primary" data-filter="python">Python y Prog.</button>
-                        <button class="btn btn-outline-primary" data-filter="data">Data Science</button>
-                        <button class="btn btn-outline-primary" data-filter="web">Desarrollo Web</button>
-                        <button class="btn btn-outline-primary" data-filter="office">Office y Gestión</button>
-                        <button class="btn btn-outline-primary" data-filter="cad">Ingeniería CAD</button>
+                    <div class="filter-button-group mb-5" role="group" aria-label="Filtros de cursos">
+                        <button class="btn btn-outline-primary active" data-filter="all" data-toggle="tooltip" title="Mostrar todos los cursos">Todos</button>
+                        <button class="btn btn-outline-primary" data-filter="python" data-toggle="tooltip" title="Cursos de Python y Programación">Python y Prog.</button>
+                        <button class="btn btn-outline-primary" data-filter="data" data-toggle="tooltip" title="Cursos de Data Science">Data Science</button>
+                        <button class="btn btn-outline-primary" data-filter="web" data-toggle="tooltip" title="Cursos de Desarrollo Web">Desarrollo Web</button>
+                        <button class="btn btn-outline-primary" data-filter="office" data-toggle="tooltip" title="Cursos de Office y Gestión">Office y Gestión</button>
+                        <button class="btn btn-outline-primary" data-filter="cad" data-toggle="tooltip" title="Cursos de Ingeniería CAD">Ingeniería CAD</button>
                     </div>
 
                     <div class="row course-grid">
@@ -101,7 +154,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item python">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/programador.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/programador.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Aprende a Programar: Lógica de Programación</h4>
                                     <span class="badge badge-python">Fundamentos</span>
                                 </div>
@@ -114,7 +167,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item python">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/programacion_estructurada.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/programacion_estructurada.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Programación Estructurada (Python)</h4>
                                     <span class="badge badge-python">Desarrollador</span>
                                 </div>
@@ -127,7 +180,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item python">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/programacion_modular.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/programacion_modular.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Programación Modular (Python)</h4>
                                     <span class="badge badge-python">Desarrollador</span>
                                 </div>
@@ -140,7 +193,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item python">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/programacion_orientada_objetos.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/programacion_orientada_objetos.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Programación Orientada a Objetos (Python)</h4>
                                     <span class="badge badge-python">Desarrollador</span>
                                 </div>
@@ -153,7 +206,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item python">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/pyqt.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/pyqt.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Interfaces Gráficas en Python (PyQt)</h4>
                                     <span class="badge badge-python">Desktop Apps</span>
                                 </div>
@@ -166,7 +219,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item python">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/lenguaje_c.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/lenguaje_c.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Lenguaje C</h4>
                                     <span class="badge badge-python">Desarrollador</span>
                                 </div>
@@ -179,7 +232,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item data">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/sqlite.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/sqlite.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Gestión de Base de Datos Relacionales con SQL: SQLite</h4>
                                     <span class="badge badge-data">Backend</span>
                                 </div>
@@ -192,7 +245,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item data">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/pandas.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/pandas.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Análisis y Manejo de Datos con Pandas</h4>
                                     <span class="badge badge-data">Análisis</span>
                                 </div>
@@ -205,7 +258,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item data">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/matplotlib.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/matplotlib.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Visualización de Datos con MatPlotLib</h4>
                                     <span class="badge badge-data">Gráficos</span>
                                 </div>
@@ -218,7 +271,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item data">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/numpy.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/numpy.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Matemáticas Data Science (Numpy)</h4>
                                     <span class="badge badge-data">Cálculo</span>
                                 </div>
@@ -231,7 +284,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item data">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/sklearn.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/sklearn.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Machine Learning (SkLearn)</h4>
                                     <span class="badge badge-data">IA</span>
                                 </div>
@@ -244,7 +297,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item web">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/streamlit.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/streamlit.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Apps Web con Streamlit</h4>
                                     <span class="badge badge-web">Backend Web</span>
                                 </div>
@@ -257,7 +310,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item web">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/flask.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/flask.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Apps Web con Flask</h4>
                                     <span class="badge badge-web">Backend Web</span>
                                 </div>
@@ -270,7 +323,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item web">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/autocad3d.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/autocad3d.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Diseño de Páginas Web</h4>
                                     <span class="badge badge-web">Frontend</span>
                                 </div>
@@ -283,7 +336,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item office">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/excel.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/excel.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Microsoft Excel Básico</h4>
                                     <span class="badge badge-office">Ofimática</span>
                                 </div>
@@ -296,7 +349,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item office">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/excel.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/excel.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Microsoft Excel Avanzado</h4>
                                     <span class="badge badge-office">Ofimática</span>
                                 </div>
@@ -309,7 +362,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item office">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/dashboard.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/dashboard.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Dashboards Interactivos en Excel</h4>
                                     <span class="badge badge-office">Reportes</span>
                                 </div>
@@ -322,7 +375,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item office">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/word.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/word.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Microsoft Word</h4>
                                     <span class="badge badge-office">Documentos</span>
                                 </div>
@@ -335,7 +388,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item office">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/project.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/project.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">Gestión de Proyectos (MS Project)</h4>
                                     <span class="badge badge-office">Gerencia</span>
                                 </div>
@@ -348,7 +401,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item cad">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/autocad.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/autocad.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">AutoCAD 2D Básico</h4>
                                     <span class="badge badge-cad">Diseño</span>
                                 </div>
@@ -361,7 +414,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item cad">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/autocad.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/autocad.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">AutoCAD 2D Intermedio</h4>
                                     <span class="badge badge-cad">Diseño</span>
                                 </div>
@@ -374,7 +427,7 @@
                         <div class="col-lg-4 col-md-6 mb-4 filter-item cad">
                             <div class="card course-card h-100">
                                 <div class="card-body text-center">
-                                    <div class="course-icon-img"><img loading="lazy" src="imagenes/autocad_3d.png" alt="Icono del curso"></div>
+                                    <div class="course-icon-img"><img loading="lazy" decoding="async" src="imagenes/autocad_3d.png" alt="Icono del curso"></div>
                                     <h4 class="card-title">AutoCAD 3D</h4>
                                     <span class="badge badge-cad">Modelado</span>
                                 </div>
@@ -661,30 +714,10 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
 
-        <script>
-            $(document).ready(function(){
-                
-                $(".filter-button-group .btn").click(function(){
-                    var value = $(this).attr('data-filter');
-                    
-                    // 1. Efecto visual en los botones (Cambiar color al activo)
-                    $(".filter-button-group .btn").removeClass("active");
-                    $(this).addClass("active");
+        <!-- Back to top button -->
+        <a href="#page-top" id="back-to-top" class="btn btn-primary back-to-top" aria-label="Volver arriba" title="Volver arriba">
+            <i class="fas fa-arrow-up"></i>
+        </a>
 
-                    // 2. Lógica de filtrado
-                    if(value == "all") {
-                        // Si es 'todos', muestra todo con una pequeña animación
-                        $('.filter-item').fadeIn('1000');
-                    }
-                    else {
-                        // Oculta los que no coinciden
-                        $(".filter-item").not('.'+value).hide();
-                        // Muestra los que sí coinciden
-                        $('.filter-item').filter('.'+value).fadeIn('1000');
-                    }
-                });
-            });
-        </script>
-                            
     </body>
 </html>
